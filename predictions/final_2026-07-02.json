@@ -1,0 +1,136 @@
+{
+  "round": "final",
+  "model_version": "v2",
+  "locked_at": "2026-07-02T13:54:26.011948+00:00",
+  "simulation": {
+    "n_sims": 100000,
+    "champion_probs": {
+      "Belgium": 0.08768,
+      "Netherlands": 0.07194,
+      "Croatia": 0.06156,
+      "Argentina": 0.05765,
+      "Italy": 0.05646,
+      "Brazil": 0.05455,
+      "Switzerland": 0.05274,
+      "France": 0.05139,
+      "Austria": 0.04698,
+      "Poland": 0.04495,
+      "Denmark": 0.04135,
+      "Spain": 0.04055,
+      "Japan": 0.03779,
+      "Germany": 0.03466,
+      "South Korea": 0.03165,
+      "Colombia": 0.03129,
+      "Mexico": 0.02947,
+      "England": 0.02899,
+      "Ecuador": 0.02622,
+      "Portugal": 0.02596,
+      "USA": 0.0252,
+      "Senegal": 0.02363,
+      "Morocco": 0.01913,
+      "Uruguay": 0.01821
+    },
+    "qf_probs": {
+      "Brazil": 0.07468,
+      "Netherlands": 0.07188,
+      "Belgium": 0.06869666666666667,
+      "Argentina": 0.05783666666666667,
+      "Spain": 0.05618666666666667,
+      "France": 0.05122666666666666,
+      "Croatia": 0.04763333333333333,
+      "Germany": 0.0475,
+      "Italy": 0.04416333333333333,
+      "Switzerland": 0.041966666666666666,
+      "Japan": 0.03839,
+      "Austria": 0.03743,
+      "Poland": 0.03556666666666667,
+      "Portugal": 0.03549,
+      "Ecuador": 0.03491333333333333,
+      "USA": 0.03406,
+      "Denmark": 0.03329666666666667,
+      "Colombia": 0.03179333333333333,
+      "Mexico": 0.029926666666666667,
+      "England": 0.028686666666666666,
+      "Morocco": 0.0255,
+      "Uruguay": 0.025003333333333332,
+      "South Korea": 0.02458,
+      "Senegal": 0.023593333333333334
+    },
+    "sf_probs": {
+      "Belgium": 0.103045,
+      "Croatia": 0.07145,
+      "Italy": 0.066245,
+      "Switzerland": 0.06295,
+      "Netherlands": 0.062145,
+      "Austria": 0.056145,
+      "Poland": 0.05335,
+      "Argentina": 0.050075,
+      "Denmark": 0.049945,
+      "Brazil": 0.047455,
+      "France": 0.044475,
+      "South Korea": 0.03687,
+      "Spain": 0.03531,
+      "Japan": 0.03316,
+      "Germany": 0.03035,
+      "Colombia": 0.02741,
+      "Mexico": 0.025595,
+      "England": 0.024615,
+      "Portugal": 0.02253,
+      "Ecuador": 0.02226,
+      "USA": 0.02193,
+      "Senegal": 0.020585,
+      "Morocco": 0.01641,
+      "Uruguay": 0.015695
+    },
+    "r32_win_probs": {
+      "r32_1": {
+        "Netherlands": 0.65263,
+        "Japan": 0.34737
+      },
+      "r32_2": {
+        "Argentina": 0.71336,
+        "Senegal": 0.28664
+      },
+      "r32_3": {
+        "France": 0.63297,
+        "Mexico": 0.36703
+      },
+      "r32_4": {
+        "Colombia": 0.52445,
+        "England": 0.47555
+      },
+      "r32_5": {
+        "Brazil": 0.68275,
+        "Ecuador": 0.31725
+      },
+      "r32_6": {
+        "Germany": 0.58428,
+        "USA": 0.41572
+      },
+      "r32_7": {
+        "Spain": 0.68921,
+        "Morocco": 0.31079
+      },
+      "r32_8": {
+        "Portugal": 0.58781,
+        "Uruguay": 0.41219
+      },
+      "r32_9": {
+        "Belgium": 0.62633,
+        "Switzerland": 0.37367
+      },
+      "r32_10": {
+        "Croatia": 0.58867,
+        "Denmark": 0.41133
+      },
+      "r32_11": {
+        "Italy": 0.54654,
+        "Austria": 0.45346
+      },
+      "r32_12": {
+        "Poland": 0.59015,
+        "South Korea": 0.40985
+      }
+    }
+  }
+}

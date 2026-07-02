@@ -1,0 +1,13 @@
+data/raw/
+data/processed/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+.DS_Store
+.env
+models/*.pkl
+!models/.gitkeep

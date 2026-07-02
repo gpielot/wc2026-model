@@ -1,0 +1,259 @@
+{
+  "round": "r32",
+  "model_version": "v0",
+  "locked_at": "2026-07-02T13:53:41.583142+00:00",
+  "disclaimer": "Late entry \u2014 published after group stage. Predictions frozen at locked_at.",
+  "match_predictions": {
+    "r32_1": {
+      "home": "Netherlands",
+      "away": "Japan",
+      "date": "2026-06-28",
+      "p_home": 0.5015,
+      "p_draw": 0.3028,
+      "p_away": 0.1957,
+      "exp_home_goals": 1.65,
+      "exp_away_goals": 0.99
+    },
+    "r32_2": {
+      "home": "Argentina",
+      "away": "Senegal",
+      "date": "2026-06-28",
+      "p_home": 0.5679,
+      "p_draw": 0.2901,
+      "p_away": 0.142,
+      "exp_home_goals": 1.75,
+      "exp_away_goals": 0.5
+    },
+    "r32_3": {
+      "home": "France",
+      "away": "Mexico",
+      "date": "2026-06-29",
+      "p_home": 0.4725,
+      "p_draw": 0.3218,
+      "p_away": 0.2056,
+      "exp_home_goals": 1.29,
+      "exp_away_goals": 0.89
+    },
+    "r32_4": {
+      "home": "England",
+      "away": "Colombia",
+      "date": "2026-06-29",
+      "p_home": 0.3074,
+      "p_draw": 0.3367,
+      "p_away": 0.3559,
+      "exp_home_goals": 0.83,
+      "exp_away_goals": 1.04
+    },
+    "r32_5": {
+      "home": "Brazil",
+      "away": "Ecuador",
+      "date": "2026-06-30",
+      "p_home": 0.5293,
+      "p_draw": 0.3028,
+      "p_away": 0.1679,
+      "exp_home_goals": 1.61,
+      "exp_away_goals": 0.65
+    },
+    "r32_6": {
+      "home": "Germany",
+      "away": "USA",
+      "date": "2026-06-30",
+      "p_home": 0.4355,
+      "p_draw": 0.2941,
+      "p_away": 0.2704,
+      "exp_home_goals": 1.84,
+      "exp_away_goals": 1.0
+    },
+    "r32_7": {
+      "home": "Spain",
+      "away": "Morocco",
+      "date": "2026-07-01",
+      "p_home": 0.5384,
+      "p_draw": 0.3034,
+      "p_away": 0.1582,
+      "exp_home_goals": 1.59,
+      "exp_away_goals": 0.59
+    },
+    "r32_8": {
+      "home": "Portugal",
+      "away": "Uruguay",
+      "date": "2026-07-01",
+      "p_home": 0.4253,
+      "p_draw": 0.3228,
+      "p_away": 0.252,
+      "exp_home_goals": 1.14,
+      "exp_away_goals": 1.11
+    },
+    "r32_9": {
+      "home": "Belgium",
+      "away": "Switzerland",
+      "date": "2026-07-02",
+      "p_home": 0.4694,
+      "p_draw": 0.3117,
+      "p_away": 0.2189,
+      "exp_home_goals": 1.46,
+      "exp_away_goals": 1.01
+    },
+    "r32_10": {
+      "home": "Croatia",
+      "away": "Denmark",
+      "date": "2026-07-02",
+      "p_home": 0.4257,
+      "p_draw": 0.3278,
+      "p_away": 0.2465,
+      "exp_home_goals": 1.09,
+      "exp_away_goals": 1.03
+    },
+    "r32_11": {
+      "home": "Italy",
+      "away": "Austria",
+      "date": "2026-07-03",
+      "p_home": 0.3814,
+      "p_draw": 0.3235,
+      "p_away": 0.2951,
+      "exp_home_goals": 1.26,
+      "exp_away_goals": 0.88
+    },
+    "r32_12": {
+      "home": "Poland",
+      "away": "South Korea",
+      "date": "2026-07-03",
+      "p_home": 0.4298,
+      "p_draw": 0.3226,
+      "p_away": 0.2475,
+      "exp_home_goals": 1.18,
+      "exp_away_goals": 1.06
+    }
+  },
+  "simulation": {
+    "n_sims": 50000,
+    "champion_probs": {
+      "Belgium": 0.0854,
+      "Netherlands": 0.07148,
+      "Croatia": 0.06144,
+      "Argentina": 0.05724,
+      "Italy": 0.05692,
+      "Brazil": 0.05492,
+      "Switzerland": 0.05312,
+      "France": 0.05196,
+      "Austria": 0.04622,
+      "Poland": 0.04552,
+      "Spain": 0.0411,
+      "Denmark": 0.0403,
+      "Japan": 0.03764,
+      "Germany": 0.03584,
+      "Colombia": 0.03212,
+      "South Korea": 0.03152,
+      "Mexico": 0.02938,
+      "England": 0.02868,
+      "Ecuador": 0.0277,
+      "Portugal": 0.02554,
+      "USA": 0.0254,
+      "Senegal": 0.0237,
+      "Morocco": 0.01888,
+      "Uruguay": 0.01798
+    },
+    "qf_probs": {
+      "Brazil": 0.07397333333333334,
+      "Netherlands": 0.07207333333333334,
+      "Belgium": 0.06796,
+      "Argentina": 0.058026666666666664,
+      "Spain": 0.056253333333333336,
+      "France": 0.05123333333333333,
+      "Germany": 0.047926666666666666,
+      "Croatia": 0.04762,
+      "Italy": 0.044493333333333336,
+      "Switzerland": 0.04243333333333334,
+      "Japan": 0.03802,
+      "Austria": 0.037226666666666665,
+      "Poland": 0.03588,
+      "Ecuador": 0.0358,
+      "Portugal": 0.0352,
+      "USA": 0.033786666666666666,
+      "Denmark": 0.033093333333333336,
+      "Colombia": 0.03188,
+      "Mexico": 0.030193333333333332,
+      "England": 0.02838,
+      "Morocco": 0.02572,
+      "Uruguay": 0.024673333333333332,
+      "South Korea": 0.024626666666666668,
+      "Senegal": 0.023526666666666668
+    },
+    "sf_probs": {
+      "Belgium": 0.10194,
+      "Croatia": 0.07143,
+      "Italy": 0.06674,
+      "Switzerland": 0.06365,
+      "Netherlands": 0.06226,
+      "Austria": 0.05584,
+      "Poland": 0.05382,
+      "Argentina": 0.04971,
+      "Denmark": 0.04964,
+      "Brazil": 0.0471,
+      "France": 0.04423,
+      "South Korea": 0.03694,
+      "Spain": 0.03556,
+      "Japan": 0.03313,
+      "Germany": 0.03065,
+      "Colombia": 0.02759,
+      "Mexico": 0.02556,
+      "England": 0.02453,
+      "Ecuador": 0.0228,
+      "Portugal": 0.02261,
+      "USA": 0.02202,
+      "Senegal": 0.02028,
+      "Morocco": 0.01636,
+      "Uruguay": 0.01561
+    },
+    "r32_win_probs": {
+      "r32_1": {
+        "Netherlands": 0.65412,
+        "Japan": 0.34588
+      },
+      "r32_2": {
+        "Argentina": 0.71312,
+        "Senegal": 0.28688
+      },
+      "r32_3": {
+        "France": 0.6326,
+        "Mexico": 0.3674
+      },
+      "r32_4": {
+        "Colombia": 0.5263,
+        "England": 0.4737
+      },
+      "r32_5": {
+        "Brazil": 0.68116,
+        "Ecuador": 0.31884
+      },
+      "r32_6": {
+        "Germany": 0.58692,
+        "USA": 0.41308
+      },
+      "r32_7": {
+        "Spain": 0.68874,
+        "Morocco": 0.31126
+      },
+      "r32_8": {
+        "Portugal": 0.58674,
+        "Uruguay": 0.41326
+      },
+      "r32_9": {
+        "Belgium": 0.62308,
+        "Switzerland": 0.37692
+      },
+      "r32_10": {
+        "Croatia": 0.58954,
+        "Denmark": 0.41046
+      },
+      "r32_11": {
+        "Italy": 0.5463,
+        "Austria": 0.4537
+      },
+      "r32_12": {
+        "Poland": 0.59,
+        "South Korea": 0.41
+      }
+    }
+  }
+}

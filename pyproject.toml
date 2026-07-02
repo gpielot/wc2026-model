@@ -1,0 +1,35 @@
+[project]
+name = "wc2026-model"
+version = "0.1.0"
+description = "World Cup 2026 prediction model with player skills, styles, and chemistry"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "pandas>=2.0",
+    "polars>=0.20",
+    "numpy>=1.26",
+    "scikit-learn>=1.4",
+    "lightgbm>=4.3",
+    "scipy>=1.12",
+    "pyarrow>=15.0",
+    "requests>=2.31",
+    "socceraction>=1.5",
+    "kloppy>=3.14",
+    "matplotlib>=3.8",
+    "streamlit>=1.32",
+    "joblib>=1.3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.3"]
+
+[project.scripts]
+wc2026 = "src.cli:main"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
