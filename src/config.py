@@ -54,4 +54,10 @@ TEAM_ALIASES = {
     "IR Iran": "Iran",
     "Côte d'Ivoire": "Ivory Coast",
     "Cote d'Ivoire": "Ivory Coast",
+    "DR Congo": "DR Congo",
+    "Congo DR": "DR Congo",
+    "Cabo Verde": "Cape Verde",
+    "Bosnia and Herzegovina": "Bosnia and Herzegovina",
+    "United States": "USA",
+    "USMNT": "USA",
 }

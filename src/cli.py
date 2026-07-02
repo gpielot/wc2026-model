@@ -139,6 +139,14 @@ def cmd_betting(_args):
     print(f"Betting report written to {path}", flush=True)
 
 
+def cmd_update_r16(_args):
+    from src.publish.predict_r16 import publish_r16_predictions
+
+    path = publish_r16_predictions(retrain=True, refresh_martj42=True)
+    print(f"R16 predictions published to {path}", flush=True)
+    print(f"Summary: docs/R16_PREDICTIONS.md", flush=True)
+
+
 def cmd_final(_args):
     from src.publish.live_update import generate_final_writeup, publish_next_round
 
@@ -163,6 +171,7 @@ def main():
     p_pub.add_argument("--round", default="r16", choices=["r16", "qf", "sf", "final"])
     sub.add_parser("betting", help="Generate betting edge report")
     sub.add_parser("final", help="Publish QF/SF/Final and write final summary")
+    sub.add_parser("update-r16", help="Ingest R32 results, retrain, predict real R16 bracket")
 
     args = parser.parse_args()
     cmds = {
@@ -173,6 +182,7 @@ def main():
         "simulate": cmd_simulate,
         "publish": cmd_publish_round,
         "betting": cmd_betting,
+        "update-r16": cmd_update_r16,
         "final": cmd_final,
     }
     if args.command in cmds:

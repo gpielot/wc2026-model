@@ -42,10 +42,22 @@ Club + international event data (StatsBomb)
 
 ## Predictions
 
+**[📖 Prediction Story](docs/PREDICTION_STORY.md)** — running diary: Brazil ✅, Paraguay upset ❌, and locked Round of 16 picks.
+
 Locked prediction files:
 
-- `predictions/r32_2026-06-30.json` — Round of 32 match probabilities + bracket simulation
-- `predictions/r16_*.json` — Round of 16 (run `python -m src.cli publish --round r16`)
+- `predictions/r32_2026-06-30.json` — Round of 32 (original lock)
+- `predictions/r16_real_bracket_2026-07-02.json` — Round of 16 after ingesting R32 results
+- `docs/R16_PREDICTIONS.md` — human-readable R16 summary
+
+After each knockout round, add results to `src/data/wc2026_results.py` and run:
+
+```bash
+make update-r16   # ingest results → retrain → publish next round
+```
+
+Then update `docs/PREDICTION_STORY.md` with what happened and push.
+
 - See `docs/betting_edge_report.md` for model vs market comparison
 
 ## Project structure

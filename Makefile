@@ -24,6 +24,9 @@ betting:
 final:
 	python -m src.cli final
 
+update-r16:
+	python -m src.cli update-r16
+
 dashboard:
 	streamlit run src/publish/dashboard.py
 
