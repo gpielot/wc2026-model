@@ -34,6 +34,15 @@ The model liked Brazil’s attack rating and recent form. Japan had pushed Nethe
 
 This is the kind of miss that keeps the project honest. The model gave Germany an edge, but not a landslide — Paraguay’s win probability was still around 26%, plus draw chance. An upset, not a miracle. Still: **wrong winner**.
 
+### Australia vs Egypt — ❌ Missed, and it changed tonight’s fixture
+
+| | Model | Reality |
+|---|--------|---------|
+| **Fixture** | Australia vs Egypt (R32, 3 Jul) | 1–1, **Egypt** won 4–2 on penalties |
+| **Our call** | **Australia** (~35% win probability) | Egypt advanced; Mohamed Salah’s panenka in the shootout |
+
+The model had this as a coin flip — Australia 35%, Egypt 35%, draw ~30% — but it still leaned **Australia**. Egypt’s win matters beyond the scorecard: our 2 July R16 lock assumed Australia would beat Egypt and face Argentina. **That bracket path was wrong.** Egypt are through instead, so tonight’s Round of 16 tie is **Argentina vs Egypt** — not Argentina vs Australia.
+
 Other R32 results the model would have leaned correctly on (post-hoc, same weights):
 
 | Match | Result | Model lean |
@@ -89,7 +98,24 @@ These were published **before** the Round of 16 began (4 July 2026).
 | Argentina vs Cape Verde | **Argentina** (77%) | Argentina 3–2 (aet) | ✅ |
 | Colombia vs Ghana | **Colombia** (51%) | Colombia 1–0 | ✅ |
 
-**Final R32 day: 5/6.** Egypt’s penalty shootout win over Australia was essentially a toss-up in the model (~35% vs ~35%).
+**Final R32 day: 5/6.** Egypt’s penalty shootout win over Australia was essentially a toss-up in the model (~35% vs ~35%) — but picking Australia meant we projected the wrong Round of 16 pairing (see below).
+
+---
+
+## Chapter 3b — The bracket miss: Argentina vs Australia (that never was)
+
+When we locked R16 predictions on **2 July**, six Round of 32 ties were still unplayed. The model filled in probable winners — including **Australia over Egypt** — and built the bracket from there.
+
+That produced this **wrong** probable fixture in [`predictions/r16_real_bracket_2026-07-02.json`](../predictions/r16_real_bracket_2026-07-02.json):
+
+| What we projected (2 Jul) | What actually happened |
+|---------------------------|------------------------|
+| Australia beats Egypt | ❌ Egypt won on penalties (3 Jul) |
+| **Argentina vs Australia** in R16 | **Argentina vs Egypt** in R16 |
+
+So we never “predicted Australia would win tonight” — we predicted Australia would win **last Friday** in the Round of 32. They didn’t. Egypt did. That’s why today’s match is **Egypt vs Argentina** in Atlanta, not the Socceroos.
+
+After ingesting the real results on 7 July, the updated lock has the correct pairings. See [`predictions/qf_real_bracket_2026-07-07.json`](../predictions/qf_real_bracket_2026-07-07.json).
 
 ---
 
@@ -120,14 +146,18 @@ Locked output: [`predictions/qf_real_bracket_2026-07-07.json`](../predictions/qf
 
 ---
 
-## Chapter 6 — Tonight’s R16 + next week’s quarter-finals
+## Chapter 6 — Today’s R16 (7 July) + quarter-finals
 
-### Still to play tonight (7 July)
+Two Round of 16 ties finish the round today. Both use the **real FIFA bracket** after all R32 results are in.
 
-| Match | **Predicted winner** | P(win) | Notes |
-|-------|----------------------|--------|-------|
-| Argentina vs Egypt | **Argentina** | 70.5% | Defending champs after Cape Verde scare |
-| Colombia vs Switzerland | **Colombia** | 49.9% | Essentially a coin flip |
+### Today — locked before kickoff
+
+| Match | **Predicted winner** | P(win) | Backstory |
+|-------|----------------------|--------|-----------|
+| **Argentina vs Egypt** | **Argentina** | 70.5% | Egypt knocked out Australia (our R32 miss); Argentina scraped past Cape Verde 3–2 in extra time |
+| **Colombia vs Switzerland** | **Colombia** | 49.9% | Colombia beat Ghana 1–0; Switzerland beat Algeria 2–0 — essentially a coin flip |
+
+> **Note:** If you saw “Argentina vs Australia” in the older 2 July file, that was a **probable** fixture built on the model picking Australia over Egypt. Egypt’s upset changed the path. Tonight it’s Egypt.
 
 ### Quarter-finals — locked before kickoff
 
@@ -138,7 +168,7 @@ Locked output: [`predictions/qf_real_bracket_2026-07-07.json`](../predictions/qf
 | **11 Jul** | Norway vs England | **England** | 55.8% |
 | **11 Jul** | Argentina vs Colombia* | **Argentina** | 43.5% |
 
-\*Probable fixture — depends on tonight’s R16 results. If Egypt or Switzerland pull upsets, I’ll rerun `make update-r16` and push a corrected QF file.
+\*Probable fixture — assumes Argentina and Colombia win today. If Egypt or Switzerland upset, I’ll rerun `make update-r16` and push a corrected QF file.
 
 Technical details: [`docs/QF_PREDICTIONS.md`](QF_PREDICTIONS.md) · [`docs/R16_PREDICTIONS.md`](R16_PREDICTIONS.md)
 
