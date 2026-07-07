@@ -32,7 +32,7 @@ The model liked Brazil’s attack rating and recent form. Japan had pushed Nethe
 | **Fixture** | Germany vs Paraguay (R32, 29 Jun) | 1–1, **Paraguay** won 4–3 on penalties |
 | **Our call** | **Germany** (~44% win probability) | Paraguay eliminated the four-time champions |
 
-This is the kind of miss that keeps the project honest. The model gave Germany a edge, but not a landslide — Paraguay’s win probability was still around 26%, plus draw chance. An upset, not a miracle. Still: **wrong winner**.
+This is the kind of miss that keeps the project honest. The model gave Germany an edge, but not a landslide — Paraguay’s win probability was still around 26%, plus draw chance. An upset, not a miracle. Still: **wrong winner**.
 
 Other R32 results the model would have leaned correctly on (post-hoc, same weights):
 
@@ -61,53 +61,120 @@ Locked output: [`predictions/r16_real_bracket_2026-07-02.json`](../predictions/r
 
 ---
 
-## Chapter 3 — Round of 16: my next locked predictions
+## Chapter 3 — Round of 16: my locked predictions (before kickoff)
 
-These are published **before** the Round of 16 kicks off (4 July 2026). I will not change them after kickoff.
+These were published **before** the Round of 16 began (4 July 2026).
 
 ### Confirmed FIFA fixtures
 
-| Date | Match | **Predicted winner** | P(win) | Notes |
-|------|-------|----------------------|--------|-------|
-| **4 Jul** | Canada vs Morocco | **Morocco** | 40.9% | Co-host Canada, but model likes Morocco’s run |
-| **4 Jul** | Paraguay vs France | **France** | 61.9% | Paraguay’s giant-killing run meets France |
-| **5 Jul** | Brazil vs Norway | **Brazil** | 67.3% | Haaland vs Seleção — model backs Brazil |
-| **5 Jul** | Mexico vs England | **England** | 36.8% | Very tight; slight edge to England |
-| **6 Jul** | USA vs Belgium | **Belgium** | 56.8% | Belgium’s comeback spirit + squad depth |
+| Date | Match | **Predicted winner** | P(win) | Result |
+|------|-------|----------------------|--------|--------|
+| **4 Jul** | Canada vs Morocco | **Morocco** | 40.9% | ✅ Morocco 3–0 |
+| **4 Jul** | Paraguay vs France | **France** | 61.9% | ✅ France 1–0 |
+| **5 Jul** | Brazil vs Norway | **Brazil** | 67.3% | ❌ Norway 2–1 |
+| **5 Jul** | Mexico vs England | **England** | 36.8% | ✅ England 3–2 |
+| **6 Jul** | USA vs Belgium | **Belgium** | 56.8% | ✅ Belgium 4–1 |
+| **6 Jul** | Portugal vs Spain | **Spain** | 40.6% | ✅ Spain 1–0 |
+
+**R16 scorecard (6/8 played): 5 correct, 1 wrong.** The Brazil miss hurt — Haaland’s late double sent Norway to their first World Cup quarter-final and ended Brazil’s earliest exit since 1990.
 
 ### Probable fixtures (pending final R32 results, 2–3 Jul)
 
-The model also projects winners for the remaining Round of 32 ties, then builds probable Round of 16 pairings:
+| Pending R32 | Model pick | Actual | Correct? |
+|-------------|------------|--------|----------|
+| Spain vs Austria | **Spain** (64%) | Spain 3–0 | ✅ |
+| Portugal vs Croatia | **Portugal** (55%) | Portugal 2–1 | ✅ |
+| Switzerland vs Algeria | **Switzerland** (47%) | Switzerland 2–0 | ✅ |
+| Australia vs Egypt | **Australia** (35%) | Egypt on pens | ❌ (coin flip) |
+| Argentina vs Cape Verde | **Argentina** (77%) | Argentina 3–2 (aet) | ✅ |
+| Colombia vs Ghana | **Colombia** (51%) | Colombia 1–0 | ✅ |
 
-| Pending R32 | Model pick | Probable R16 | Model pick |
-|-------------|------------|--------------|------------|
-| Spain vs Austria | **Spain** (64%) | Portugal vs Spain | **Spain** (41%) |
-| Portugal vs Croatia | **Portugal** (55%) | | |
-| Switzerland vs Algeria | **Switzerland** (47%) | Colombia vs Switzerland | **Colombia** (51%) |
-| Australia vs Egypt | **Australia** (TBD%) | Argentina vs Australia | **Argentina** (77%) |
-| Argentina vs Cape Verde | **Argentina** (77%) | | |
-| Colombia vs Ghana | **Colombia** (51%) | | |
+**Final R32 day: 5/6.** Egypt’s penalty shootout win over Australia was essentially a toss-up in the model (~35% vs ~35%).
 
-> When the last R32 matches finish, I'll run `make update-r16` again, update this diary, and push a new locked JSON.
+---
+
+## Chapter 4 — Round of 16: the big upset (5 July 2026)
+
+### Brazil vs Norway — ❌ The one that stung
+
+| | Model | Reality |
+|---|--------|---------|
+| **Fixture** | Brazil vs Norway (R16, 5 Jul) | **Norway 2–1 Brazil** |
+| **Our call** | **Brazil** (67.3% win probability) | Haaland brace; Neymar’s late pen was only a consolation |
+
+This was our highest-confidence R16 pick — and our worst miss of the tournament so far. The model saw Brazil’s attack and Norway’s thin squad history and backed the five-time champions comfortably. Erling Haaland had other ideas.
+
+Everything else from the locked 2 July file held up: Morocco dismantled Canada, France edged Paraguay, England survived a thriller in Mexico City, Belgium routed the USA, and Spain beat Portugal in Dallas.
+
+---
+
+## Chapter 5 — Model update (7 July 2026)
+
+All 16 Round of 32 ties are in. Six of eight Round of 16 matches are done. I ingested everything through July 6, refreshed martj42, and retrained:
+
+```bash
+make update-r16   # now publishes QF bracket + remaining R16
+```
+
+Locked output: [`predictions/qf_real_bracket_2026-07-07.json`](../predictions/qf_real_bracket_2026-07-07.json)
+
+---
+
+## Chapter 6 — Tonight’s R16 + next week’s quarter-finals
+
+### Still to play tonight (7 July)
+
+| Match | **Predicted winner** | P(win) | Notes |
+|-------|----------------------|--------|-------|
+| Argentina vs Egypt | **Argentina** | 70.5% | Defending champs after Cape Verde scare |
+| Colombia vs Switzerland | **Colombia** | 49.9% | Essentially a coin flip |
+
+### Quarter-finals — locked before kickoff
+
+| Date | Match | **Predicted winner** | P(win) |
+|------|-------|----------------------|--------|
+| **9 Jul** | France vs Morocco | **France** | 57.4% |
+| **10 Jul** | Spain vs Belgium | **Spain** | 60.6% |
+| **11 Jul** | Norway vs England | **England** | 55.8% |
+| **11 Jul** | Argentina vs Colombia* | **Argentina** | 43.5% |
+
+\*Probable fixture — depends on tonight’s R16 results. If Egypt or Switzerland pull upsets, I’ll rerun `make update-r16` and push a corrected QF file.
+
+Technical details: [`docs/QF_PREDICTIONS.md`](QF_PREDICTIONS.md) · [`docs/R16_PREDICTIONS.md`](R16_PREDICTIONS.md)
+
+---
+
+## Running scorecard
+
+| Round | Picks tracked | Correct | Hit rate |
+|-------|---------------|---------|----------|
+| R32 (first 10) | 10 | ~7–8 | ~75% |
+| R32 (final 6) | 6 | 5 | 83% |
+| R16 (played) | 6 | 5 | 83% |
+| **Overall** | **22** | **~17–18** | **~77%** |
+
+The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil, and Egypt over Australia were all in the “possible but not likely” bucket — which is exactly where real World Cups live.
 
 ---
 
 ## How to follow along
 
 1. **This file** — the narrative (`docs/PREDICTION_STORY.md`)
-2. **Technical picks** — [`docs/R16_PREDICTIONS.md`](R16_PREDICTIONS.md)
+2. **Technical picks** — [`docs/QF_PREDICTIONS.md`](QF_PREDICTIONS.md) · [`docs/R16_PREDICTIONS.md`](R16_PREDICTIONS.md)
 3. **Raw probabilities** — [`predictions/`](../predictions/) (JSON, timestamped)
 4. **Full methodology** — [`docs/METHODOLOGY.md`](METHODOLOGY.md) and the [research paper](Who_Scores_WC2026_Research_Paper.docx)
 
 ---
 
-## Chapters to come (I'll update as matches finish)
+## Chapters to come
 
-- [ ] **Round of 16 results** — did Morocco beat Canada? Did Brazil hold off Norway?
-- [ ] **Quarter-finals** — `make update-r16` → new chapter
+- [x] **Round of 32 complete** — all 16 ties decided
+- [x] **Round of 16 results (partial)** — Brazil upset logged
+- [ ] **Round of 16 tonight** — Argentina/Egypt, Colombia/Switzerland
+- [ ] **Quarter-finals** — France–Morocco kicks off 9 July
 - [ ] **Semi-finals**
 - [ ] **Final** — 19 July 2026, MetLife Stadium
 
 ---
 
-*Last updated: 2 July 2026. Model version: `v3-r16-real-bracket`.*
+*Last updated: 7 July 2026. Model version: `v4-qf-real-bracket`.*

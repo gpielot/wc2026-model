@@ -1,0 +1,94 @@
+{
+  "round": "qf",
+  "model_version": "v4-qf-real-bracket",
+  "locked_at": "2026-07-07T15:06:14.994165+00:00",
+  "disclaimer": "Updated after R32 (16/16 complete) and R16 through July 6. Jul 7 R16 ties and one QF slot use model-predicted winners.",
+  "r32_results_ingested": 16,
+  "r16_results_ingested": 6,
+  "pending_r16_predictions": {
+    "r16_7": {
+      "home": "Argentina",
+      "away": "Egypt",
+      "date": "2026-07-07",
+      "venue": "Atlanta",
+      "p_home": 0.7046,
+      "p_draw": 0.2011,
+      "p_away": 0.0943,
+      "predicted_winner": "Argentina",
+      "exp_home_goals": 1.84,
+      "exp_away_goals": 0.5,
+      "note": "Confirmed FIFA fixture"
+    },
+    "r16_8": {
+      "home": "Colombia",
+      "away": "Switzerland",
+      "date": "2026-07-07",
+      "venue": "Vancouver",
+      "p_home": 0.4985,
+      "p_draw": 0.2882,
+      "p_away": 0.2132,
+      "predicted_winner": "Colombia",
+      "exp_home_goals": 1.39,
+      "exp_away_goals": 0.73,
+      "note": "Confirmed FIFA fixture"
+    }
+  },
+  "match_predictions": {
+    "qf_1": {
+      "home": "France",
+      "away": "Morocco",
+      "date": "2026-07-09",
+      "venue": "Foxborough",
+      "p_home": 0.5742,
+      "p_draw": 0.2913,
+      "p_away": 0.1345,
+      "predicted_winner": "France",
+      "exp_home_goals": 1.25,
+      "exp_away_goals": 0.62,
+      "note": "Confirmed FIFA fixture"
+    },
+    "qf_2": {
+      "home": "Spain",
+      "away": "Belgium",
+      "date": "2026-07-10",
+      "venue": "Inglewood",
+      "p_home": 0.6064,
+      "p_draw": 0.2474,
+      "p_away": 0.1462,
+      "predicted_winner": "Spain",
+      "exp_home_goals": 1.53,
+      "exp_away_goals": 1.01,
+      "note": "Confirmed FIFA fixture"
+    },
+    "qf_3": {
+      "home": "Norway",
+      "away": "England",
+      "date": "2026-07-11",
+      "venue": "Miami",
+      "p_home": 0.1742,
+      "p_draw": 0.2678,
+      "p_away": 0.5579,
+      "predicted_winner": "England",
+      "exp_home_goals": 0.68,
+      "exp_away_goals": 1.56,
+      "note": "Confirmed FIFA fixture"
+    },
+    "qf_4": {
+      "home": "Argentina",
+      "away": "Colombia",
+      "date": "2026-07-11",
+      "venue": "Kansas City",
+      "p_home": 0.4347,
+      "p_draw": 0.2997,
+      "p_away": 0.2656,
+      "predicted_winner": "Argentina",
+      "exp_home_goals": 1.05,
+      "exp_away_goals": 0.85,
+      "note": "Probable \u2014 Winner: Argentina vs Egypt vs Winner: Colombia vs Switzerland"
+    }
+  },
+  "simulation": {
+    "n_sims": 50000,
+    "note": "QF advancement preview"
+  }
+}

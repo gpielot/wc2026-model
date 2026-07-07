@@ -171,7 +171,8 @@ def main():
     p_pub.add_argument("--round", default="r16", choices=["r16", "qf", "sf", "final"])
     sub.add_parser("betting", help="Generate betting edge report")
     sub.add_parser("final", help="Publish QF/SF/Final and write final summary")
-    sub.add_parser("update-r16", help="Ingest R32 results, retrain, predict real R16 bracket")
+    sub.add_parser("update-r16", help="Ingest knockout results, retrain, predict QF bracket")
+    sub.add_parser("update-qf", help="Alias for update-r16")
 
     args = parser.parse_args()
     cmds = {
@@ -183,6 +184,7 @@ def main():
         "publish": cmd_publish_round,
         "betting": cmd_betting,
         "update-r16": cmd_update_r16,
+        "update-qf": cmd_update_r16,
         "final": cmd_final,
     }
     if args.command in cmds:

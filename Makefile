@@ -27,6 +27,8 @@ final:
 update-r16:
 	python -m src.cli update-r16
 
+update-qf: update-r16
+
 dashboard:
 	streamlit run src/publish/dashboard.py
 

@@ -42,13 +42,15 @@ Club + international event data (StatsBomb)
 
 ## Predictions
 
-**[📖 Prediction Story](docs/PREDICTION_STORY.md)** — running diary: Brazil ✅, Paraguay upset ❌, and locked Round of 16 picks.
+**[📖 Prediction Story](docs/PREDICTION_STORY.md)** — running diary: Brazil ✅, Paraguay upset ❌, Norway shock ❌, and locked QF picks.
 
 Locked prediction files:
 
 - `predictions/r32_2026-06-30.json` — Round of 32 (original lock)
-- `predictions/r16_real_bracket_2026-07-02.json` — Round of 16 after ingesting R32 results
-- `docs/R16_PREDICTIONS.md` — human-readable R16 summary
+- `predictions/r16_real_bracket_2026-07-02.json` — Round of 16 after ingesting R32 results through Jul 1
+- `predictions/qf_real_bracket_2026-07-07.json` — Quarter-finals after R16 through Jul 6
+- `docs/QF_PREDICTIONS.md` — human-readable QF summary
+- `docs/R16_PREDICTIONS.md` — remaining R16 fixtures (Jul 7)
 
 After each knockout round, add results to `src/data/wc2026_results.py` and run:
 
