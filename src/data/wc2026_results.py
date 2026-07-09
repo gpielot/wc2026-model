@@ -22,7 +22,7 @@ WC2026_R32_RESULTS = [
     {"date": "2026-07-03", "home": "Colombia", "away": "Ghana", "home_goals": 1, "away_goals": 0, "winner": "Colombia"},
 ]
 
-# Completed Round of 16 through July 6
+# Completed Round of 16 (all 8 ties)
 WC2026_R16_RESULTS = [
     {"date": "2026-07-04", "home": "Canada", "away": "Morocco", "home_goals": 0, "away_goals": 3, "winner": "Morocco"},
     {"date": "2026-07-04", "home": "Paraguay", "away": "France", "home_goals": 0, "away_goals": 1, "winner": "France"},
@@ -30,33 +30,23 @@ WC2026_R16_RESULTS = [
     {"date": "2026-07-05", "home": "Mexico", "away": "England", "home_goals": 2, "away_goals": 3, "winner": "England"},
     {"date": "2026-07-06", "home": "USA", "away": "Belgium", "home_goals": 1, "away_goals": 4, "winner": "Belgium"},
     {"date": "2026-07-06", "home": "Portugal", "away": "Spain", "home_goals": 0, "away_goals": 1, "winner": "Spain"},
+    {"date": "2026-07-07", "home": "Argentina", "away": "Egypt", "home_goals": 3, "away_goals": 2, "winner": "Argentina"},
+    {"date": "2026-07-07", "home": "Colombia", "away": "Switzerland", "home_goals": 0, "away_goals": 0, "winner": "Switzerland", "shootout": True},
 ]
 
-# Remaining Round of 16 (scheduled — update scores when played)
-WC2026_R16_PENDING = [
-    {"id": "r16_7", "date": "2026-07-07", "home": "Argentina", "away": "Egypt", "venue": "Atlanta"},
-    {"id": "r16_8", "date": "2026-07-07", "home": "Colombia", "away": "Switzerland", "venue": "Vancouver"},
-]
+# Completed quarter-finals (update after each tie)
+WC2026_QF_RESULTS: list[dict] = []
 
-# Confirmed quarter-final fixtures (FIFA bracket)
-WC2026_QF_FIXTURES = [
+# Remaining quarter-final fixtures
+WC2026_QF_PENDING = [
     {"id": "qf_1", "date": "2026-07-09", "home": "France", "away": "Morocco", "venue": "Foxborough"},
     {"id": "qf_2", "date": "2026-07-10", "home": "Spain", "away": "Belgium", "venue": "Inglewood"},
     {"id": "qf_3", "date": "2026-07-11", "home": "Norway", "away": "England", "venue": "Miami"},
+    {"id": "qf_4", "date": "2026-07-11", "home": "Argentina", "away": "Switzerland", "venue": "Kansas City"},
 ]
 
-# QF slot that depends on remaining R16 winners
-WC2026_QF_PENDING = [
-    {
-        "id": "qf_4",
-        "date": "2026-07-11",
-        "home_slot": "Winner: Argentina vs Egypt",
-        "away_slot": "Winner: Colombia vs Switzerland",
-        "venue": "Kansas City",
-        "depends_on": [("r16_7", "winner"), ("r16_8", "winner")],
-    },
-]
-
-# Legacy aliases used by older publish script
+# Legacy aliases
 WC2026_R32_PENDING: list[dict] = []
-WC2026_R16_FIXTURES = WC2026_R16_RESULTS  # historical; use R16_RESULTS + PENDING
+WC2026_R16_PENDING: list[dict] = []
+WC2026_R16_FIXTURES = WC2026_R16_RESULTS
+WC2026_QF_FIXTURES = WC2026_QF_PENDING

@@ -48,7 +48,7 @@ Locked prediction files:
 
 - `predictions/r32_2026-06-30.json` — Round of 32 (original lock)
 - `predictions/r16_real_bracket_2026-07-02.json` — Round of 16 after ingesting R32 results through Jul 1
-- `predictions/qf_real_bracket_2026-07-07.json` — Quarter-finals after R16 through Jul 6
+- `predictions/qf_real_bracket_2026-07-09.json` — Quarter-finals after full R16 (8/8)
 - `docs/QF_PREDICTIONS.md` — human-readable QF summary
 - `docs/R16_PREDICTIONS.md` — remaining R16 fixtures (Jul 7)
 

@@ -146,31 +146,43 @@ Locked output: [`predictions/qf_real_bracket_2026-07-07.json`](../predictions/qf
 
 ---
 
-## Chapter 6 — Today’s R16 (7 July) + quarter-finals
+## Chapter 6 — Round of 16 finale (7 July 2026)
 
-Two Round of 16 ties finish the round today. Both use the **real FIFA bracket** after all R32 results are in.
+Two ties closed out the Round of 16. Both were locked in [`predictions/qf_real_bracket_2026-07-07.json`](../predictions/qf_real_bracket_2026-07-07.json) before kickoff.
 
-### Today — locked before kickoff
+| Match | **Predicted winner** | P(win) | Result | Correct? |
+|-------|----------------------|--------|--------|------------|
+| Argentina vs Egypt | **Argentina** | 70.5% | Argentina **3–2** | ✅ |
+| Colombia vs Switzerland | **Colombia** | 49.9% | 0–0, **Switzerland** 4–3 pens | ❌ |
 
-| Match | **Predicted winner** | P(win) | Backstory |
-|-------|----------------------|--------|-----------|
-| **Argentina vs Egypt** | **Argentina** | 70.5% | Egypt knocked out Australia (our R32 miss); Argentina scraped past Cape Verde 3–2 in extra time |
-| **Colombia vs Switzerland** | **Colombia** | 49.9% | Colombia beat Ghana 1–0; Switzerland beat Algeria 2–0 — essentially a coin flip |
+Argentina trailed 2–0 and rallied with goals from Romero, Messi, and Fernández in the final 13 minutes — another escape act for the defending champions. Switzerland held Colombia goalless for 120 minutes and won the shootout, booking their first World Cup quarter-final since 1954.
 
-> **Note:** If you saw “Argentina vs Australia” in the older 2 July file, that was a **probable** fixture built on the model picking Australia over Egypt. Egypt’s upset changed the path. Tonight it’s Egypt.
+That Switzerland upset also fixed the bracket: our 7 July file wrongly projected **Argentina vs Colombia** in the quarters. The real QF is **Argentina vs Switzerland**.
 
-### Quarter-finals — locked before kickoff
+---
 
-| Date | Match | **Predicted winner** | P(win) |
-|------|-------|----------------------|--------|
-| **9 Jul** | France vs Morocco | **France** | 57.4% |
-| **10 Jul** | Spain vs Belgium | **Spain** | 60.6% |
-| **11 Jul** | Norway vs England | **England** | 55.8% |
-| **11 Jul** | Argentina vs Colombia* | **Argentina** | 43.5% |
+## Chapter 7 — Model update (9 July 2026)
 
-\*Probable fixture — assumes Argentina and Colombia win today. If Egypt or Switzerland upset, I’ll rerun `make update-r16` and push a corrected QF file.
+All Round of 32 and Round of 16 ties are now ingested (24 knockout matches). Retrained on fresh martj42 data:
 
-Technical details: [`docs/QF_PREDICTIONS.md`](QF_PREDICTIONS.md) · [`docs/R16_PREDICTIONS.md`](R16_PREDICTIONS.md)
+```bash
+make update-r16
+```
+
+Locked output: [`predictions/qf_real_bracket_2026-07-09.json`](../predictions/qf_real_bracket_2026-07-09.json)
+
+---
+
+## Chapter 8 — Quarter-finals: locked predictions
+
+| Date | Match | **Predicted winner** | P(win) | Status |
+|------|-------|----------------------|--------|--------|
+| **9 Jul** | France vs Morocco | **France** | 57.4% | Tonight — kicks off ~10pm CET |
+| **10 Jul** | Spain vs Belgium | **Spain** | 60.6% | |
+| **11 Jul** | Norway vs England | **England** | 55.9% | |
+| **11 Jul** | Argentina vs Switzerland | **Argentina** | 68.5% | Corrected from Argentina–Colombia |
+
+Technical details: [`docs/QF_PREDICTIONS.md`](QF_PREDICTIONS.md)
 
 ---
 
@@ -180,10 +192,10 @@ Technical details: [`docs/QF_PREDICTIONS.md`](QF_PREDICTIONS.md) · [`docs/R16_P
 |-------|---------------|---------|----------|
 | R32 (first 10) | 10 | ~7–8 | ~75% |
 | R32 (final 6) | 6 | 5 | 83% |
-| R16 (played) | 6 | 5 | 83% |
-| **Overall** | **22** | **~17–18** | **~77%** |
+| R16 (all 8) | 8 | 6 | 75% |
+| **Overall** | **24** | **~18** | **~75%** |
 
-The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil, and Egypt over Australia were all in the “possible but not likely” bucket — which is exactly where real World Cups live.
+The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil, Egypt over Australia, and Switzerland over Colombia were all in the “possible but not likely” bucket — which is exactly where real World Cups live.
 
 ---
 
@@ -198,13 +210,12 @@ The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil,
 
 ## Chapters to come
 
-- [x] **Round of 32 complete** — all 16 ties decided
-- [x] **Round of 16 results (partial)** — Brazil upset logged
-- [ ] **Round of 16 tonight** — Argentina/Egypt, Colombia/Switzerland
-- [ ] **Quarter-finals** — France–Morocco kicks off 9 July
+- [x] **Round of 16 complete** — all 8 ties decided
+- [x] **Quarter-finals locked** — France–Morocco tonight (9 Jul)
+- [ ] **Quarter-final results** — update after each tie
 - [ ] **Semi-finals**
 - [ ] **Final** — 19 July 2026, MetLife Stadium
 
 ---
 
-*Last updated: 7 July 2026. Model version: `v4-qf-real-bracket`.*
+*Last updated: 9 July 2026. Model version: `v5-qf-real-bracket`.*

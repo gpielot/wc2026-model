@@ -1,4 +1,4 @@
-"""Ingest WC results and publish knockout-round predictions (R16 → QF)."""
+"""Ingest WC results and publish knockout-round predictions."""
 
 from __future__ import annotations
 
@@ -12,9 +12,8 @@ import pandas as pd
 
 from src.config import DATA_PROCESSED, MODELS_DIR, PREDICTIONS, TEAM_ALIASES
 from src.data.wc2026_results import (
-    WC2026_QF_FIXTURES,
     WC2026_QF_PENDING,
-    WC2026_R16_PENDING,
+    WC2026_QF_RESULTS,
     WC2026_R16_RESULTS,
     WC2026_R32_RESULTS,
 )
@@ -71,11 +70,12 @@ def _append_results(matches: pd.DataFrame, results: list[dict], stage: str) -> p
 
 
 def ingest_wc_results(matches: pd.DataFrame | None = None) -> pd.DataFrame:
-    """Append completed WC2026 R32 and R16 results to matches table."""
+    """Append completed WC2026 knockout results to matches table."""
     if matches is None:
         matches = pd.read_parquet(DATA_PROCESSED / "matches.parquet")
     matches = _append_results(matches, WC2026_R32_RESULTS, "r32")
     matches = _append_results(matches, WC2026_R16_RESULTS, "r16")
+    matches = _append_results(matches, WC2026_QF_RESULTS, "qf")
     return matches
 
 
@@ -143,25 +143,6 @@ def _predict_fixtures(model, feat, styles, chemistry, W, fixtures: list[dict], n
     return out
 
 
-def resolve_pending_qf(r16_preds: dict) -> list[dict]:
-    resolved = []
-    for slot in WC2026_QF_PENDING:
-        if slot["id"] == "qf_4":
-            home = r16_preds.get("r16_7", {}).get("predicted_winner", "Argentina")
-            away = r16_preds.get("r16_8", {}).get("predicted_winner", "Colombia")
-            resolved.append(
-                {
-                    "id": slot["id"],
-                    "date": slot["date"],
-                    "home": home,
-                    "away": away,
-                    "venue": slot["venue"],
-                    "note": f"Probable — {slot['home_slot']} vs {slot['away_slot']}",
-                }
-            )
-    return resolved
-
-
 def _write_summary(path: Path, title: str, locked_at: str, match_predictions: dict) -> None:
     lines = [f"# {title}\n", f"Locked: {locked_at}\n"]
     for _mid, m in match_predictions.items():
@@ -179,7 +160,7 @@ def publish_r16_predictions(
     retrain: bool = True,
     refresh_martj42: bool = True,
 ) -> Path:
-    """Full pipeline: ingest results → retrain → predict pending R16 + QF → save JSON."""
+    """Full pipeline: ingest results → retrain → predict QF → save JSON."""
     if refresh_martj42:
         matches = refresh_martj42_matches()
     else:
@@ -210,24 +191,21 @@ def publish_r16_predictions(
         else np.zeros((len(STYLE_DIMS), len(STYLE_DIMS)))
     )
 
-    r16_pending_preds = _predict_fixtures(model, feat, styles, chemistry, W, WC2026_R16_PENDING)
-    probable_qf = resolve_pending_qf(r16_pending_preds)
-    all_qf = WC2026_QF_FIXTURES + probable_qf
-    qf_preds = _predict_fixtures(model, feat, styles, chemistry, W, all_qf)
+    qf_preds = _predict_fixtures(model, feat, styles, chemistry, W, WC2026_QF_PENDING)
 
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     locked_at = datetime.now(timezone.utc).isoformat()
     payload = {
         "round": "qf",
-        "model_version": "v4-qf-real-bracket",
+        "model_version": "v5-qf-real-bracket",
         "locked_at": locked_at,
         "disclaimer": (
-            "Updated after R32 (16/16 complete) and R16 through July 6. "
-            "Jul 7 R16 ties and one QF slot use model-predicted winners."
+            "Updated after full R32 (16/16) and R16 (8/8). "
+            f"QF results ingested: {len(WC2026_QF_RESULTS)}/4."
         ),
         "r32_results_ingested": len(WC2026_R32_RESULTS),
         "r16_results_ingested": len(WC2026_R16_RESULTS),
-        "pending_r16_predictions": r16_pending_preds,
+        "qf_results_ingested": len(WC2026_QF_RESULTS),
         "match_predictions": qf_preds,
         "simulation": {"n_sims": 50000, "note": "QF advancement preview"},
     }
@@ -238,11 +216,8 @@ def publish_r16_predictions(
     out.write_text(json.dumps(payload, indent=2))
 
     _write_summary(root / "docs" / "QF_PREDICTIONS.md", "Quarter-Final Predictions (Updated Model)", locked_at, qf_preds)
-    _write_summary(
-        root / "docs" / "R16_PREDICTIONS.md",
-        "Round of 16 — Remaining Fixtures",
-        locked_at,
-        r16_pending_preds,
+    (root / "docs" / "R16_PREDICTIONS.md").write_text(
+        f"# Round of 16 — Complete\n\nAll 8 ties finished. Last update: {locked_at[:10]}.\n"
     )
 
     return out
