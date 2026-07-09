@@ -125,3 +125,23 @@ def get_team_ratings_at_date(feat: pd.DataFrame, as_of: pd.Timestamp) -> dict[st
         ratings[row["home"]] = row["home_elo"]
         ratings[row["away"]] = row["away_elo"]
     return ratings
+
+
+def wc2026_tournament_matches(feat: pd.DataFrame) -> pd.DataFrame:
+    """Matches from WC 2026 (martj42 group stage + ingested knockout rows)."""
+    t = feat["tournament"].astype(str)
+    return feat[
+        t.str.contains("World Cup 2026", na=False)
+        | ((t == "FIFA World Cup") & (feat["date"].dt.year == 2026))
+    ]
+
+
+def team_wc2026_form(team: str, wc: pd.DataFrame, window: int = 5, default: float = 1.5) -> float:
+    """Points per game for a team in the current World Cup before prediction."""
+    pts: list[float] = []
+    for _, m in wc.iterrows():
+        if m["home"] == team:
+            pts.append(3.0 if m["result"] == "H" else (1.0 if m["result"] == "D" else 0.0))
+        elif m["away"] == team:
+            pts.append(3.0 if m["result"] == "A" else (1.0 if m["result"] == "D" else 0.0))
+    return float(np.mean(pts[-window:])) if pts else default

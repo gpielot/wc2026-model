@@ -17,7 +17,7 @@ from src.data.wc2026_results import (
     WC2026_R16_RESULTS,
     WC2026_R32_RESULTS,
 )
-from src.features import build_match_features, DynamicElo
+from src.features import build_match_features, DynamicElo, team_wc2026_form, wc2026_tournament_matches
 from src.features.chemistry import chemistry_boost
 from src.features.styles import STYLE_DIMS, style_matchup_boost
 from src.models import EnsembleModel, train_and_save
@@ -97,23 +97,16 @@ def predict_single_match(model: EnsembleModel, home: str, away: str, feat: pd.Da
     ra = elo.ratings.get(away, 1500)
     exp = elo.expected(home, away, neutral=True)
 
-    wc = feat[feat["tournament"].astype(str).str.contains("World Cup 2026", na=False)]
-
-    def form(team):
-        pts = []
-        for _, m in wc.iterrows():
-            if m["home"] == team:
-                pts.append(3 if m["result"] == "H" else (1 if m["result"] == "D" else 0))
-            elif m["away"] == team:
-                pts.append(3 if m["result"] == "A" else (1 if m["result"] == "D" else 0))
-        return np.mean(pts[-5:]) if pts else 1.5
+    wc = wc2026_tournament_matches(feat)
+    home_form = team_wc2026_form(home, wc)
+    away_form = team_wc2026_form(away, wc)
 
     feat_row = {
         "elo_diff": rh - ra,
         "elo_exp_home": exp,
-        "form_diff": form(home) - form(away),
-        "home_form": form(home),
-        "away_form": form(away),
+        "form_diff": home_form - away_form,
+        "home_form": home_form,
+        "away_form": away_form,
         "is_knockout": 1,
     }
     sb = style_matchup_boost(home, away, styles, W)
@@ -197,7 +190,7 @@ def publish_r16_predictions(
     locked_at = datetime.now(timezone.utc).isoformat()
     payload = {
         "round": "qf",
-        "model_version": "v5-qf-real-bracket",
+        "model_version": "v5.1-qf-real-bracket",
         "locked_at": locked_at,
         "disclaimer": (
             "Updated after full R32 (16/16) and R16 (8/8). "

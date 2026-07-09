@@ -179,10 +179,80 @@ Locked output: [`predictions/qf_real_bracket_2026-07-09.json`](../predictions/qf
 |------|-------|----------------------|--------|--------|
 | **9 Jul** | France vs Morocco | **France** | 57.4% | Tonight — kicks off ~10pm CET |
 | **10 Jul** | Spain vs Belgium | **Spain** | 60.6% | |
-| **11 Jul** | Norway vs England | **England** | 55.9% | |
+| **11 Jul** | Norway vs England | **England** | 56.4% | See Chapter 9 post-mortem |
 | **11 Jul** | Argentina vs Switzerland | **Argentina** | 68.5% | Corrected from Argentina–Colombia |
 
 Technical details: [`docs/QF_PREDICTIONS.md`](QF_PREDICTIONS.md)
+
+---
+
+## Chapter 9 — Post-mortem: why we picked Brazil over Norway
+
+Before **Norway vs England** (11 Jul), it is worth dissecting our worst Round of 16 miss — Brazil at **67.3%** when Norway won **2–1**.
+
+### What we said vs what happened
+
+| | Model (locked 2 Jul) | Reality (5 Jul) |
+|---|---------------------|-----------------|
+| Brazil win | **67.3%** | Lost 1–2 |
+| Norway win | 11.1% | Haaland brace |
+| Expected goals | Brazil **2.12** – Norway **0.50** | Actual: **1–2** |
+
+### Root cause 1 — Historical pedigree dominated
+
+| Signal | Brazil | Norway |
+|--------|--------|--------|
+| Dynamic Elo (pre-match) | ~1,944 | ~1,771 (**+173**) |
+| Dixon–Coles home win | **73.0%** | 7.9% |
+| Dixon–Coles xG | **2.05** | **0.52** |
+
+Dixon–Coles learns from decades of internationals. Brazil are a perennial top side; Norway are mid-tier historically. That prior alone drove most of the 67% figure. **Tournament Norway** (7 goals in two group games, R32 win over Ivory Coast) were not priced as a hot team — only as “Norway.”
+
+### Root cause 2 — No player-level signal for Norway (Haaland blind spot)
+
+| Team | Players in skill model |
+|------|------------------------|
+| Brazil | 26 |
+| England | 21 |
+| **Norway** | **0** |
+
+Player skills come from StatsBomb events. Norway’s squad is outside that pipeline, so **Erling Haaland’s tournament form never entered the model**. We priced Norway at 0.5 xG; Haaland scored twice.
+
+### Root cause 3 — World Cup form bug (now fixed)
+
+The gradient-boosting leg uses `home_form` / `away_form` from recent World Cup matches. Those features queried tournament name `"FIFA World Cup 2026"`, but **group-stage games in martj42 are stored as `"FIFA World Cup"`**. Both teams defaulted to **1.5 PPG** even though actual 2026 form was:
+
+| Team | Group PPG (actual) |
+|------|-------------------|
+| Norway | **3.00** |
+| Brazil | **2.33** |
+| England | **2.00** |
+
+Even with Norway at 3.0 PPG manually, Brazil win probability only moved **66.5% → ~70%** — form alone would not have flipped the pick. **Fix applied in v5.1:** `team_wc2026_form()` now merges both tournament labels.
+
+### Root cause 4 — Both sub-models agreed
+
+| Component | Brazil win |
+|-----------|------------|
+| Dixon–Coles (45%) | 73.0% |
+| Gradient boosting (55%) | 61.2% |
+| Style / chemistry | 0.0 (neutral) |
+
+No internal disagreement. The ensemble was confidently wrong, not split.
+
+### Root cause 5 — Football variance
+
+Brazil missed a penalty; Endrick and Vinícius Jr had clear chances; **Nyland** (Norway GK) was excellent. Norway scored twice from fewer chances — a high-variance knockout where the favourite created more but converted less. The model predicts **average team strength**; upsets still happen (~11% is not 0%).
+
+### Implications for Norway vs England (11 Jul)
+
+Current lock (v5.1, form fix): **England 56.4%** | Draw 27.7% | Norway **15.9%** | xG 0.68 – 1.56
+
+**What is better than Brazil–Norway:** the Elo gap is smaller (~−106 vs +173), and England is **56%** not 67% — less overconfidence.
+
+**What still applies:** no Haaland in player skills; Dixon–Coles still underrates Norway attack; post-Brazil momentum is only partially captured via Elo.
+
+**Honest read:** 16% on Norway may still be low in spirit (same blind spots), but England are rightly favourites — deeper squad, player skills in the model, higher Elo. **Trust England as lean favourite, not a lock.** If Haaland gets 2–3 chances, that may be enough again.
 
 ---
 
@@ -212,10 +282,11 @@ The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil,
 
 - [x] **Round of 16 complete** — all 8 ties decided
 - [x] **Quarter-finals locked** — France–Morocco tonight (9 Jul)
+- [x] **Brazil–Norway post-mortem** — Chapter 9
 - [ ] **Quarter-final results** — update after each tie
 - [ ] **Semi-finals**
 - [ ] **Final** — 19 July 2026, MetLife Stadium
 
 ---
 
-*Last updated: 9 July 2026. Model version: `v5-qf-real-bracket`.*
+*Last updated: 10 July 2026. Model version: `v5.1-qf-real-bracket` (WC form fix).*
