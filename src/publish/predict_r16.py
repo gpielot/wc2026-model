@@ -12,10 +12,11 @@ import pandas as pd
 
 from src.config import DATA_PROCESSED, MODELS_DIR, PREDICTIONS, TEAM_ALIASES
 from src.data.wc2026_results import (
-    WC2026_QF_PENDING,
     WC2026_QF_RESULTS,
     WC2026_R16_RESULTS,
     WC2026_R32_RESULTS,
+    WC2026_SF_PENDING,
+    WC2026_SF_RESULTS,
 )
 from src.features import build_match_features, DynamicElo, team_wc2026_form, wc2026_tournament_matches
 from src.features.chemistry import chemistry_boost
@@ -76,6 +77,7 @@ def ingest_wc_results(matches: pd.DataFrame | None = None) -> pd.DataFrame:
     matches = _append_results(matches, WC2026_R32_RESULTS, "r32")
     matches = _append_results(matches, WC2026_R16_RESULTS, "r16")
     matches = _append_results(matches, WC2026_QF_RESULTS, "qf")
+    matches = _append_results(matches, WC2026_SF_RESULTS, "sf")
     return matches
 
 
@@ -148,12 +150,12 @@ def _write_summary(path: Path, title: str, locked_at: str, match_predictions: di
     path.write_text("\n".join(lines))
 
 
-def publish_r16_predictions(
+def publish_knockout_predictions(
     model: EnsembleModel | None = None,
     retrain: bool = True,
     refresh_martj42: bool = True,
 ) -> Path:
-    """Full pipeline: ingest results → retrain → predict QF → save JSON."""
+    """Full pipeline: ingest results → retrain → predict next round → save JSON."""
     if refresh_martj42:
         matches = refresh_martj42_matches()
     else:
@@ -184,38 +186,42 @@ def publish_r16_predictions(
         else np.zeros((len(STYLE_DIMS), len(STYLE_DIMS)))
     )
 
-    qf_preds = _predict_fixtures(model, feat, styles, chemistry, W, WC2026_QF_PENDING)
+    sf_preds = _predict_fixtures(model, feat, styles, chemistry, W, WC2026_SF_PENDING)
 
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     locked_at = datetime.now(timezone.utc).isoformat()
     payload = {
-        "round": "qf",
-        "model_version": "v5.1-qf-real-bracket",
+        "round": "sf",
+        "model_version": "v6-sf-real-bracket",
         "locked_at": locked_at,
         "disclaimer": (
-            "Updated after full R32 (16/16) and R16 (8/8). "
-            f"QF results ingested: {len(WC2026_QF_RESULTS)}/4."
+            f"Updated after QF complete (4/4). SF results ingested: {len(WC2026_SF_RESULTS)}/2."
         ),
         "r32_results_ingested": len(WC2026_R32_RESULTS),
         "r16_results_ingested": len(WC2026_R16_RESULTS),
         "qf_results_ingested": len(WC2026_QF_RESULTS),
-        "match_predictions": qf_preds,
-        "simulation": {"n_sims": 50000, "note": "QF advancement preview"},
+        "sf_results_ingested": len(WC2026_SF_RESULTS),
+        "match_predictions": sf_preds,
+        "simulation": {"n_sims": 50000, "note": "SF advancement preview"},
     }
 
     root = Path(__file__).resolve().parents[2]
-    out = PREDICTIONS / f"qf_real_bracket_{ts}.json"
+    out = PREDICTIONS / f"sf_real_bracket_{ts}.json"
     PREDICTIONS.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, indent=2))
 
-    _write_summary(root / "docs" / "QF_PREDICTIONS.md", "Quarter-Final Predictions (Updated Model)", locked_at, qf_preds)
-    (root / "docs" / "R16_PREDICTIONS.md").write_text(
-        f"# Round of 16 — Complete\n\nAll 8 ties finished. Last update: {locked_at[:10]}.\n"
+    _write_summary(root / "docs" / "SF_PREDICTIONS.md", "Semi-Final Predictions (Updated Model)", locked_at, sf_preds)
+    (root / "docs" / "QF_PREDICTIONS.md").write_text(
+        f"# Quarter-Finals — Complete\n\nAll 4 ties finished. Last update: {locked_at[:10]}.\n"
     )
 
     return out
 
 
+# Backwards-compatible alias
+publish_r16_predictions = publish_knockout_predictions
+
+
 if __name__ == "__main__":
-    path = publish_r16_predictions()
+    path = publish_knockout_predictions()
     print(f"Published: {path}")

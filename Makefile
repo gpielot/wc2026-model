@@ -29,6 +29,8 @@ update-r16:
 
 update-qf: update-r16
 
+update-sf: update-r16
+
 dashboard:
 	streamlit run src/publish/dashboard.py
 

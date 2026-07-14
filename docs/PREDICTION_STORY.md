@@ -256,6 +256,46 @@ Current lock (v5.1, form fix): **England 56.4%** | Draw 27.7% | Norway **15.9%**
 
 ---
 
+## Chapter 10 — Quarter-finals: our best round yet
+
+All four quarter-finals locked in [`predictions/qf_real_bracket_2026-07-09.json`](../predictions/qf_real_bracket_2026-07-09.json) (v5.1) before kickoff.
+
+| Match | **Our pick** | P(win) | Result | Correct? |
+|-------|--------------|--------|--------|----------|
+| France vs Morocco | **France** | 58.1% | France **2–0** | ✅ |
+| Spain vs Belgium | **Spain** | 58.5% | Spain **2–1** | ✅ |
+| Norway vs England | **England** | 56.4% | England **2–1** (aet) | ✅ |
+| Argentina vs Switzerland | **Argentina** | 70.3% | Argentina **3–1** (aet) | ✅ |
+
+**Quarter-final scorecard: 4/4 — 100%.** Mbappé (pen miss, then goal + assist) sent France through; Merino’s 88th-minute winner kept Spain’s clean-sheet run alive until Belgium scored; Bellingham’s brace rescued England after Norway led; Álvarez’s extra-time stunner settled Argentina–Switzerland.
+
+On **Norway at 4.63**: the market implied ~22% Norway; we had ~16%. England won — so neither our model nor a “Norway may win” hunch paid off. Chapter 9’s read held: lean England favourite, not a lock, but Norway didn’t repeat the Brazil upset.
+
+---
+
+## Chapter 11 — Model update + semi-finals (14 July 2026)
+
+All quarter-finals ingested. Retrained on fresh martj42 data:
+
+```bash
+make update-sf
+```
+
+Locked output: [`predictions/sf_real_bracket_2026-07-14.json`](../predictions/sf_real_bracket_2026-07-14.json)
+
+### Semi-finals — locked before kickoff
+
+| Date | Match | **Predicted winner** | P(win) | Notes |
+|------|-------|----------------------|--------|-------|
+| **14 Jul** (today) | France vs Spain | **France** | 39.3% | Essentially a coin flip — rematch of 2024 Euro SF |
+| **15 Jul** | England vs Argentina | **Argentina** | 42.8% | 2022 final rematch; Messi vs Kane/Bellingham |
+
+Technical details: [`docs/SF_PREDICTIONS.md`](SF_PREDICTIONS.md)
+
+France–Spain is the tightest pick we’ve published — **39% vs 32%** with **29% draw**. Neither side has trailed at this World Cup. England–Argentina slightly favours the defending champions despite England’s home-continent edge.
+
+---
+
 ## Running scorecard
 
 | Round | Picks tracked | Correct | Hit rate |
@@ -263,7 +303,8 @@ Current lock (v5.1, form fix): **England 56.4%** | Draw 27.7% | Norway **15.9%**
 | R32 (first 10) | 10 | ~7–8 | ~75% |
 | R32 (final 6) | 6 | 5 | 83% |
 | R16 (all 8) | 8 | 6 | 75% |
-| **Overall** | **24** | **~18** | **~75%** |
+| **QF (all 4)** | **4** | **4** | **100%** |
+| **Overall** | **28** | **~22** | **~79%** |
 
 The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil, Egypt over Australia, and Switzerland over Colombia were all in the “possible but not likely” bucket — which is exactly where real World Cups live.
 
@@ -272,7 +313,7 @@ The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil,
 ## How to follow along
 
 1. **This file** — the narrative (`docs/PREDICTION_STORY.md`)
-2. **Technical picks** — [`docs/QF_PREDICTIONS.md`](QF_PREDICTIONS.md) · [`docs/R16_PREDICTIONS.md`](R16_PREDICTIONS.md)
+2. **Technical picks** — [`docs/SF_PREDICTIONS.md`](SF_PREDICTIONS.md) · [`docs/QF_PREDICTIONS.md`](QF_PREDICTIONS.md)
 3. **Raw probabilities** — [`predictions/`](../predictions/) (JSON, timestamped)
 4. **Full methodology** — [`docs/METHODOLOGY.md`](METHODOLOGY.md) and the [research paper](Who_Scores_WC2026_Research_Paper.docx)
 
@@ -283,10 +324,11 @@ The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil,
 - [x] **Round of 16 complete** — all 8 ties decided
 - [x] **Quarter-finals locked** — France–Morocco tonight (9 Jul)
 - [x] **Brazil–Norway post-mortem** — Chapter 9
-- [ ] **Quarter-final results** — update after each tie
-- [ ] **Semi-finals**
+- [x] **Quarter-final results** — 4/4 correct
+- [x] **Semi-finals locked** — France–Spain today (14 Jul)
+- [ ] **Semi-final results**
 - [ ] **Final** — 19 July 2026, MetLife Stadium
 
 ---
 
-*Last updated: 10 July 2026. Model version: `v5.1-qf-real-bracket` (WC form fix).*
+*Last updated: 14 July 2026. Model version: `v6-sf-real-bracket`.*

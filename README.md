@@ -48,14 +48,12 @@ Locked prediction files:
 
 - `predictions/r32_2026-06-30.json` — Round of 32 (original lock)
 - `predictions/r16_real_bracket_2026-07-02.json` — Round of 16 after ingesting R32 results through Jul 1
-- `predictions/qf_real_bracket_2026-07-09.json` — Quarter-finals after full R16 (8/8)
-- `docs/QF_PREDICTIONS.md` — human-readable QF summary
-- `docs/R16_PREDICTIONS.md` — remaining R16 fixtures (Jul 7)
+- `predictions/sf_real_bracket_2026-07-14.json` — Semi-finals after QF (4/4)
 
 After each knockout round, add results to `src/data/wc2026_results.py` and run:
 
 ```bash
-make update-r16   # ingest results → retrain → publish next round
+make update-sf   # ingest results → retrain → publish next round
 ```
 
 Then update `docs/PREDICTION_STORY.md` with what happened and push.

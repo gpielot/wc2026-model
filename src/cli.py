@@ -143,8 +143,8 @@ def cmd_update_r16(_args):
     from src.publish.predict_r16 import publish_r16_predictions
 
     path = publish_r16_predictions(retrain=True, refresh_martj42=True)
-    print(f"R16 predictions published to {path}", flush=True)
-    print(f"Summary: docs/R16_PREDICTIONS.md", flush=True)
+    print(f"Knockout predictions published to {path}", flush=True)
+    print(f"Summary: docs/SF_PREDICTIONS.md or docs/QF_PREDICTIONS.md", flush=True)
 
 
 def cmd_final(_args):
@@ -171,8 +171,9 @@ def main():
     p_pub.add_argument("--round", default="r16", choices=["r16", "qf", "sf", "final"])
     sub.add_parser("betting", help="Generate betting edge report")
     sub.add_parser("final", help="Publish QF/SF/Final and write final summary")
-    sub.add_parser("update-r16", help="Ingest knockout results, retrain, predict QF bracket")
+    sub.add_parser("update-r16", help="Ingest knockout results, retrain, publish next round")
     sub.add_parser("update-qf", help="Alias for update-r16")
+    sub.add_parser("update-sf", help="Alias for update-r16")
 
     args = parser.parse_args()
     cmds = {
@@ -185,6 +186,7 @@ def main():
         "betting": cmd_betting,
         "update-r16": cmd_update_r16,
         "update-qf": cmd_update_r16,
+        "update-sf": cmd_update_r16,
         "final": cmd_final,
     }
     if args.command in cmds:

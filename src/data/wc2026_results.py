@@ -34,19 +34,26 @@ WC2026_R16_RESULTS = [
     {"date": "2026-07-07", "home": "Colombia", "away": "Switzerland", "home_goals": 0, "away_goals": 0, "winner": "Switzerland", "shootout": True},
 ]
 
-# Completed quarter-finals (update after each tie)
-WC2026_QF_RESULTS: list[dict] = []
+# Completed quarter-finals (all 4 ties)
+WC2026_QF_RESULTS = [
+    {"date": "2026-07-09", "home": "France", "away": "Morocco", "home_goals": 2, "away_goals": 0, "winner": "France"},
+    {"date": "2026-07-10", "home": "Spain", "away": "Belgium", "home_goals": 2, "away_goals": 1, "winner": "Spain"},
+    {"date": "2026-07-11", "home": "Norway", "away": "England", "home_goals": 1, "away_goals": 2, "winner": "England", "extra_time": True},
+    {"date": "2026-07-11", "home": "Argentina", "away": "Switzerland", "home_goals": 3, "away_goals": 1, "winner": "Argentina", "extra_time": True},
+]
 
-# Remaining quarter-final fixtures
-WC2026_QF_PENDING = [
-    {"id": "qf_1", "date": "2026-07-09", "home": "France", "away": "Morocco", "venue": "Foxborough"},
-    {"id": "qf_2", "date": "2026-07-10", "home": "Spain", "away": "Belgium", "venue": "Inglewood"},
-    {"id": "qf_3", "date": "2026-07-11", "home": "Norway", "away": "England", "venue": "Miami"},
-    {"id": "qf_4", "date": "2026-07-11", "home": "Argentina", "away": "Switzerland", "venue": "Kansas City"},
+# Completed semi-finals (update after each tie)
+WC2026_SF_RESULTS: list[dict] = []
+
+# Semi-final fixtures
+WC2026_SF_PENDING = [
+    {"id": "sf_1", "date": "2026-07-14", "home": "France", "away": "Spain", "venue": "Arlington"},
+    {"id": "sf_2", "date": "2026-07-15", "home": "England", "away": "Argentina", "venue": "Atlanta"},
 ]
 
 # Legacy aliases
 WC2026_R32_PENDING: list[dict] = []
 WC2026_R16_PENDING: list[dict] = []
+WC2026_QF_PENDING: list[dict] = []
 WC2026_R16_FIXTURES = WC2026_R16_RESULTS
-WC2026_QF_FIXTURES = WC2026_QF_PENDING
+WC2026_QF_FIXTURES = WC2026_QF_RESULTS

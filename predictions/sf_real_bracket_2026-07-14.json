@@ -1,0 +1,42 @@
+{
+  "round": "sf",
+  "model_version": "v6-sf-real-bracket",
+  "locked_at": "2026-07-14T10:50:15.024687+00:00",
+  "disclaimer": "Updated after QF complete (4/4). SF results ingested: 0/2.",
+  "r32_results_ingested": 16,
+  "r16_results_ingested": 8,
+  "qf_results_ingested": 4,
+  "sf_results_ingested": 0,
+  "match_predictions": {
+    "sf_1": {
+      "home": "France",
+      "away": "Spain",
+      "date": "2026-07-14",
+      "venue": "Arlington",
+      "p_home": 0.3931,
+      "p_draw": 0.2915,
+      "p_away": 0.3154,
+      "predicted_winner": "France",
+      "exp_home_goals": 0.95,
+      "exp_away_goals": 1.26,
+      "note": "Confirmed FIFA fixture"
+    },
+    "sf_2": {
+      "home": "England",
+      "away": "Argentina",
+      "date": "2026-07-15",
+      "venue": "Atlanta",
+      "p_home": 0.2729,
+      "p_draw": 0.2995,
+      "p_away": 0.4276,
+      "predicted_winner": "Argentina",
+      "exp_home_goals": 0.87,
+      "exp_away_goals": 1.17,
+      "note": "Confirmed FIFA fixture"
+    }
+  },
+  "simulation": {
+    "n_sims": 50000,
+    "note": "SF advancement preview"
+  }
+}
