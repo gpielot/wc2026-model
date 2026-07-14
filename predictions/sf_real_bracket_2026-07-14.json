@@ -1,7 +1,7 @@
 {
   "round": "sf",
-  "model_version": "v6-sf-real-bracket",
-  "locked_at": "2026-07-14T10:50:15.024687+00:00",
+  "model_version": "v6.1-sf-knockout-breakdown",
+  "locked_at": "2026-07-14T10:59:07.666036+00:00",
   "disclaimer": "Updated after QF complete (4/4). SF results ingested: 0/2.",
   "r32_results_ingested": 16,
   "r16_results_ingested": 8,
@@ -16,10 +16,33 @@
       "p_home": 0.3931,
       "p_draw": 0.2915,
       "p_away": 0.3154,
-      "predicted_winner": "France",
+      "predicted_winner": "Spain",
       "exp_home_goals": 0.95,
       "exp_away_goals": 1.26,
-      "note": "Confirmed FIFA fixture"
+      "note": "Confirmed FIFA fixture",
+      "knockout_breakdown": {
+        "home": "France",
+        "away": "Spain",
+        "regulation": {
+          "p_home_win": 0.3931,
+          "p_draw": 0.2915,
+          "p_away_win": 0.3154,
+          "note": "90-minute result \u2014 matches typical 1X2 draw market in knockouts"
+        },
+        "tiebreak_given_draw_90": {
+          "p_extra_time_decides": 0.55,
+          "p_penalties": 0.45,
+          "p_home_wins_et": 0.0834,
+          "p_away_wins_et": 0.077,
+          "p_home_wins_pens": 0.0,
+          "p_away_wins_pens": 0.1312
+        },
+        "advancement": {
+          "p_home_advance": 0.4765,
+          "p_away_advance": 0.5235,
+          "predicted_qualifier": "Spain"
+        }
+      }
     },
     "sf_2": {
       "home": "England",
@@ -32,7 +55,30 @@
       "predicted_winner": "Argentina",
       "exp_home_goals": 0.87,
       "exp_away_goals": 1.17,
-      "note": "Confirmed FIFA fixture"
+      "note": "Confirmed FIFA fixture",
+      "knockout_breakdown": {
+        "home": "England",
+        "away": "Argentina",
+        "regulation": {
+          "p_home_win": 0.2729,
+          "p_draw": 0.2995,
+          "p_away_win": 0.4276,
+          "note": "90-minute result \u2014 matches typical 1X2 draw market in knockouts"
+        },
+        "tiebreak_given_draw_90": {
+          "p_extra_time_decides": 0.55,
+          "p_penalties": 0.45,
+          "p_home_wins_et": 0.0857,
+          "p_away_wins_et": 0.0791,
+          "p_home_wins_pens": 0.0,
+          "p_away_wins_pens": 0.1348
+        },
+        "advancement": {
+          "p_home_advance": 0.3585,
+          "p_away_advance": 0.6415,
+          "predicted_qualifier": "Argentina"
+        }
+      }
     }
   },
   "simulation": {

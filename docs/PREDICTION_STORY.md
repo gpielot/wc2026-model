@@ -287,12 +287,14 @@ Locked output: [`predictions/sf_real_bracket_2026-07-14.json`](../predictions/sf
 
 | Date | Match | **Predicted winner** | P(win) | Notes |
 |------|-------|----------------------|--------|-------|
-| **14 Jul** (today) | France vs Spain | **France** | 39.3% | Essentially a coin flip — rematch of 2024 Euro SF |
-| **15 Jul** | England vs Argentina | **Argentina** | 42.8% | 2022 final rematch; Messi vs Kane/Bellingham |
+| **14 Jul** (today) | France vs Spain | **Spain** (advance) | 52.3% | Coin flip at 90 min; see draw note below |
+| **15 Jul** | England vs Argentina | **Argentina** (advance) | 64.1% | 2022 final rematch |
+
+**Knockout breakdown** (new in v6.1): we now split **90-minute result** vs **to advance** (includes ET + pens). France–Spain at 90 min: **39% / 29% draw / 32%** — but **Spain to advance 52%** once tiebreaks are included.
+
+**Draw bet @ 3.25?** The market implies **30.8%** draw at 90 minutes. Our model: **29.1%** → EV ≈ **−5%** per €1. Not +EV on our numbers. Breakeven needs ~**31%** draw at 90. Worth noting: neither France nor Spain has trailed at this World Cup, so a tight chess match is plausible — but the price already reflects that.
 
 Technical details: [`docs/SF_PREDICTIONS.md`](SF_PREDICTIONS.md)
-
-France–Spain is the tightest pick we’ve published — **39% vs 32%** with **29% draw**. Neither side has trailed at this World Cup. England–Argentina slightly favours the defending champions despite England’s home-continent edge.
 
 ---
 
@@ -331,4 +333,4 @@ The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil,
 
 ---
 
-*Last updated: 14 July 2026. Model version: `v6-sf-real-bracket`.*
+*Last updated: 14 July 2026. Model version: `v6.1-sf-knockout-breakdown`.*

@@ -22,6 +22,7 @@ from src.features import build_match_features, DynamicElo, team_wc2026_form, wc2
 from src.features.chemistry import chemistry_boost
 from src.features.styles import STYLE_DIMS, style_matchup_boost
 from src.models import EnsembleModel, train_and_save
+from src.publish.knockout_resolution import format_knockout_summary, knockout_breakdown
 
 
 def norm_team(name: str) -> str:
@@ -121,7 +122,8 @@ def _predict_fixtures(model, feat, styles, chemistry, W, fixtures: list[dict], n
     for fix in fixtures:
         home, away = norm_team(fix["home"]), norm_team(fix["away"])
         p = predict_single_match(model, home, away, feat, styles, chemistry, W)
-        fav = home if p["p_home"] >= p["p_away"] else away
+        bd = knockout_breakdown(p["p_home"], p["p_draw"], p["p_away"], home, away)
+        fav = bd["advancement"]["predicted_qualifier"]
         out[fix["id"]] = {
             "home": home,
             "away": away,
@@ -134,6 +136,7 @@ def _predict_fixtures(model, feat, styles, chemistry, W, fixtures: list[dict], n
             "exp_home_goals": round(p["exp_home_goals"], 2),
             "exp_away_goals": round(p["exp_away_goals"], 2),
             "note": fix.get("note", note_default or "Confirmed FIFA fixture"),
+            "knockout_breakdown": bd,
         }
     return out
 
@@ -147,6 +150,8 @@ def _write_summary(path: Path, title: str, locked_at: str, match_predictions: di
             f"- Predicted winner: **{m['predicted_winner']}** | xG: {m['exp_home_goals']}–{m['exp_away_goals']}\n"
             f"- {m['note']}\n"
         )
+        if "knockout_breakdown" in m:
+            lines.append(format_knockout_summary(m["knockout_breakdown"]) + "\n")
     path.write_text("\n".join(lines))
 
 
@@ -192,7 +197,7 @@ def publish_knockout_predictions(
     locked_at = datetime.now(timezone.utc).isoformat()
     payload = {
         "round": "sf",
-        "model_version": "v6-sf-real-bracket",
+        "model_version": "v6.1-sf-knockout-breakdown",
         "locked_at": locked_at,
         "disclaimer": (
             f"Updated after QF complete (4/4). SF results ingested: {len(WC2026_SF_RESULTS)}/2."
