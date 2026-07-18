@@ -1,0 +1,112 @@
+{
+  "round": "final",
+  "model_version": "v7-final-odds",
+  "locked_at": "2026-07-18T19:49:37.201290+00:00",
+  "disclaimer": "Updated after SF complete (2/2). Final locked before kickoff. 3rd-place result ingested: 0/1.",
+  "r32_results_ingested": 16,
+  "r16_results_ingested": 8,
+  "qf_results_ingested": 4,
+  "sf_results_ingested": 2,
+  "match_predictions": {
+    "final": {
+      "home": "Spain",
+      "away": "Argentina",
+      "date": "2026-07-19",
+      "venue": "MetLife Stadium",
+      "p_home": 0.391,
+      "p_draw": 0.2952,
+      "p_away": 0.3138,
+      "predicted_winner": "Spain",
+      "exp_home_goals": 1.08,
+      "exp_away_goals": 1.12,
+      "note": "Confirmed FIFA fixture",
+      "knockout_breakdown": {
+        "home": "Spain",
+        "away": "Argentina",
+        "regulation": {
+          "p_home_win": 0.391,
+          "p_draw": 0.2952,
+          "p_away_win": 0.3138,
+          "note": "90-minute result \u2014 matches typical 1X2 draw market in knockouts"
+        },
+        "fair_odds_90": {
+          "home": 2.56,
+          "draw": 3.39,
+          "away": 3.19,
+          "note": "Model fair decimal odds for regulation (no bookmaker margin)"
+        },
+        "tiebreak_given_draw_90": {
+          "p_extra_time_decides": 0.55,
+          "p_penalties": 0.45,
+          "p_home_wins_et": 0.0844,
+          "p_away_wins_et": 0.0779,
+          "p_home_wins_pens": 0.0531,
+          "p_away_wins_pens": 0.0797
+        },
+        "advancement": {
+          "p_home_advance": 0.5285,
+          "p_away_advance": 0.4715,
+          "predicted_qualifier": "Spain"
+        },
+        "fair_odds_to_win": {
+          "home": 1.89,
+          "away": 2.12,
+          "note": "Model fair odds to win the tie (90 + ET + pens)"
+        }
+      }
+    }
+  },
+  "third_place_predictions": {
+    "3rd": {
+      "home": "France",
+      "away": "England",
+      "date": "2026-07-18",
+      "venue": "Miami",
+      "p_home": 0.4864,
+      "p_draw": 0.303,
+      "p_away": 0.2105,
+      "predicted_winner": "France",
+      "exp_home_goals": 1.01,
+      "exp_away_goals": 1.01,
+      "note": "Confirmed FIFA fixture",
+      "knockout_breakdown": {
+        "home": "France",
+        "away": "England",
+        "regulation": {
+          "p_home_win": 0.4864,
+          "p_draw": 0.303,
+          "p_away_win": 0.2105,
+          "note": "90-minute result \u2014 matches typical 1X2 draw market in knockouts"
+        },
+        "fair_odds_90": {
+          "home": 2.06,
+          "draw": 3.3,
+          "away": 4.75,
+          "note": "Model fair decimal odds for regulation (no bookmaker margin)"
+        },
+        "tiebreak_given_draw_90": {
+          "p_extra_time_decides": 0.55,
+          "p_penalties": 0.45,
+          "p_home_wins_et": 0.0867,
+          "p_away_wins_et": 0.08,
+          "p_home_wins_pens": 0.0545,
+          "p_away_wins_pens": 0.0818
+        },
+        "advancement": {
+          "p_home_advance": 0.6276,
+          "p_away_advance": 0.3724,
+          "predicted_qualifier": "France"
+        },
+        "fair_odds_to_win": {
+          "home": 1.59,
+          "away": 2.69,
+          "note": "Model fair odds to win the tie (90 + ET + pens)"
+        }
+      }
+    }
+  },
+  "simulation": {
+    "n_sims": 50000,
+    "note": "Final + 3rd place preview"
+  }
+}

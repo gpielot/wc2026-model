@@ -42,18 +42,27 @@ WC2026_QF_RESULTS = [
     {"date": "2026-07-11", "home": "Argentina", "away": "Switzerland", "home_goals": 3, "away_goals": 1, "winner": "Argentina", "extra_time": True},
 ]
 
-# Completed semi-finals (update after each tie)
-WC2026_SF_RESULTS: list[dict] = []
+# Completed semi-finals (all 2 ties)
+WC2026_SF_RESULTS = [
+    {"date": "2026-07-14", "home": "France", "away": "Spain", "home_goals": 0, "away_goals": 2, "winner": "Spain"},
+    {"date": "2026-07-15", "home": "England", "away": "Argentina", "home_goals": 1, "away_goals": 2, "winner": "Argentina"},
+]
 
-# Semi-final fixtures
-WC2026_SF_PENDING = [
-    {"id": "sf_1", "date": "2026-07-14", "home": "France", "away": "Spain", "venue": "Arlington"},
-    {"id": "sf_2", "date": "2026-07-15", "home": "England", "away": "Argentina", "venue": "Atlanta"},
+# Third-place playoff (18 Jul — update when finished)
+WC2026_3RD_RESULTS: list[dict] = []
+WC2026_3RD_PENDING = [
+    {"id": "3rd", "date": "2026-07-18", "home": "France", "away": "England", "venue": "Miami"},
+]
+
+# Final
+WC2026_FINAL_PENDING = [
+    {"id": "final", "date": "2026-07-19", "home": "Spain", "away": "Argentina", "venue": "MetLife Stadium"},
 ]
 
 # Legacy aliases
 WC2026_R32_PENDING: list[dict] = []
 WC2026_R16_PENDING: list[dict] = []
 WC2026_QF_PENDING: list[dict] = []
+WC2026_SF_PENDING: list[dict] = []
 WC2026_R16_FIXTURES = WC2026_R16_RESULTS
 WC2026_QF_FIXTURES = WC2026_QF_RESULTS

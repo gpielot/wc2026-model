@@ -48,12 +48,12 @@ Locked prediction files:
 
 - `predictions/r32_2026-06-30.json` — Round of 32 (original lock)
 - `predictions/r16_real_bracket_2026-07-02.json` — Round of 16 after ingesting R32 results through Jul 1
-- `predictions/sf_real_bracket_2026-07-14.json` — Semi-finals after QF (4/4)
+- `predictions/final_real_bracket_2026-07-18.json` — Final (Spain vs Argentina) + fair odds 90/to-win
 
 After each knockout round, add results to `src/data/wc2026_results.py` and run:
 
 ```bash
-make update-sf   # ingest results → retrain → publish next round
+make update-final   # ingest results → retrain → publish next round
 ```
 
 Then update `docs/PREDICTION_STORY.md` with what happened and push.

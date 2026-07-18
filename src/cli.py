@@ -174,6 +174,7 @@ def main():
     sub.add_parser("update-r16", help="Ingest knockout results, retrain, publish next round")
     sub.add_parser("update-qf", help="Alias for update-r16")
     sub.add_parser("update-sf", help="Alias for update-r16")
+    sub.add_parser("update-final", help="Alias for update-r16")
 
     args = parser.parse_args()
     cmds = {
@@ -187,6 +188,7 @@ def main():
         "update-r16": cmd_update_r16,
         "update-qf": cmd_update_r16,
         "update-sf": cmd_update_r16,
+        "update-final": cmd_update_r16,
         "final": cmd_final,
     }
     if args.command in cmds:

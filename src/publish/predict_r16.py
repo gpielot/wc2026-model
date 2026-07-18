@@ -12,10 +12,12 @@ import pandas as pd
 
 from src.config import DATA_PROCESSED, MODELS_DIR, PREDICTIONS, TEAM_ALIASES
 from src.data.wc2026_results import (
+    WC2026_3RD_PENDING,
+    WC2026_3RD_RESULTS,
+    WC2026_FINAL_PENDING,
     WC2026_QF_RESULTS,
     WC2026_R16_RESULTS,
     WC2026_R32_RESULTS,
-    WC2026_SF_PENDING,
     WC2026_SF_RESULTS,
 )
 from src.features import build_match_features, DynamicElo, team_wc2026_form, wc2026_tournament_matches
@@ -79,6 +81,7 @@ def ingest_wc_results(matches: pd.DataFrame | None = None) -> pd.DataFrame:
     matches = _append_results(matches, WC2026_R16_RESULTS, "r16")
     matches = _append_results(matches, WC2026_QF_RESULTS, "qf")
     matches = _append_results(matches, WC2026_SF_RESULTS, "sf")
+    matches = _append_results(matches, WC2026_3RD_RESULTS, "3rd")
     return matches
 
 
@@ -160,7 +163,7 @@ def publish_knockout_predictions(
     retrain: bool = True,
     refresh_martj42: bool = True,
 ) -> Path:
-    """Full pipeline: ingest results → retrain → predict next round → save JSON."""
+    """Full pipeline: ingest results → retrain → predict final (+ 3rd place) → save JSON."""
     if refresh_martj42:
         matches = refresh_martj42_matches()
     else:
@@ -191,39 +194,58 @@ def publish_knockout_predictions(
         else np.zeros((len(STYLE_DIMS), len(STYLE_DIMS)))
     )
 
-    sf_preds = _predict_fixtures(model, feat, styles, chemistry, W, WC2026_SF_PENDING)
+    final_preds = _predict_fixtures(model, feat, styles, chemistry, W, WC2026_FINAL_PENDING)
+    third_preds = _predict_fixtures(model, feat, styles, chemistry, W, WC2026_3RD_PENDING)
 
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     locked_at = datetime.now(timezone.utc).isoformat()
     payload = {
-        "round": "sf",
-        "model_version": "v6.1-sf-knockout-breakdown",
+        "round": "final",
+        "model_version": "v7-final-odds",
         "locked_at": locked_at,
         "disclaimer": (
-            f"Updated after QF complete (4/4). SF results ingested: {len(WC2026_SF_RESULTS)}/2."
+            f"Updated after SF complete (2/2). Final locked before kickoff. "
+            f"3rd-place result ingested: {len(WC2026_3RD_RESULTS)}/1."
         ),
         "r32_results_ingested": len(WC2026_R32_RESULTS),
         "r16_results_ingested": len(WC2026_R16_RESULTS),
         "qf_results_ingested": len(WC2026_QF_RESULTS),
         "sf_results_ingested": len(WC2026_SF_RESULTS),
-        "match_predictions": sf_preds,
-        "simulation": {"n_sims": 50000, "note": "SF advancement preview"},
+        "match_predictions": final_preds,
+        "third_place_predictions": third_preds,
+        "simulation": {"n_sims": 50000, "note": "Final + 3rd place preview"},
     }
 
     root = Path(__file__).resolve().parents[2]
-    out = PREDICTIONS / f"sf_real_bracket_{ts}.json"
+    out = PREDICTIONS / f"final_real_bracket_{ts}.json"
     PREDICTIONS.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, indent=2))
 
-    _write_summary(root / "docs" / "SF_PREDICTIONS.md", "Semi-Final Predictions (Updated Model)", locked_at, sf_preds)
-    (root / "docs" / "QF_PREDICTIONS.md").write_text(
-        f"# Quarter-Finals — Complete\n\nAll 4 ties finished. Last update: {locked_at[:10]}.\n"
+    _write_summary(root / "docs" / "FINAL_PREDICTIONS.md", "Final Predictions (Updated Model)", locked_at, final_preds)
+    if third_preds:
+        third_lines = [
+            "# Third-Place Playoff Predictions\n",
+            f"Locked: {locked_at}\n",
+            "_Note: 3rd-place match may already be underway or finished — odds are research-only._\n",
+        ]
+        for _mid, m in third_preds.items():
+            third_lines.append(
+                f"## {m['home']} vs {m['away']} ({m['date']})\n"
+                f"- P(home win): {m['p_home']:.1%} | P(draw): {m['p_draw']:.1%} | P(away win): {m['p_away']:.1%}\n"
+                f"- Predicted winner: **{m['predicted_winner']}** | xG: {m['exp_home_goals']}–{m['exp_away_goals']}\n"
+            )
+            if "knockout_breakdown" in m:
+                third_lines.append(format_knockout_summary(m["knockout_breakdown"]) + "\n")
+        (root / "docs" / "THIRD_PLACE_PREDICTIONS.md").write_text("\n".join(third_lines))
+
+    (root / "docs" / "SF_PREDICTIONS.md").write_text(
+        f"# Semi-Finals — Complete\n\n"
+        f"France 0–2 Spain · England 1–2 Argentina. Last update: {locked_at[:10]}.\n"
     )
 
     return out
 
 
-# Backwards-compatible alias
 publish_r16_predictions = publish_knockout_predictions
 
 

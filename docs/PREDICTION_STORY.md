@@ -298,6 +298,64 @@ Technical details: [`docs/SF_PREDICTIONS.md`](SF_PREDICTIONS.md)
 
 ---
 
+## Chapter 12 — Semi-finals: results vs our lock
+
+| Match | **Our pick (to advance)** | Result | Correct? |
+|-------|---------------------------|--------|----------|
+| France vs Spain | **Spain** (52%) | Spain **2–0** | ✅ |
+| England vs Argentina | **Argentina** (64%) | Argentina **2–1** | ✅ |
+
+**Semi-final scorecard: 2/2.** Spain shut out France (Oyarzabal pen, Porro); Argentina came back from 1–0 down with late goals from Fernández and Lautaro Martínez after Gordon had put England ahead.
+
+---
+
+## Chapter 13 — The Final: Spain vs Argentina (19 July)
+
+Ingested both SF results, retrained, locked the final before kickoff:
+
+```bash
+make update-final
+```
+
+Locked: [`predictions/final_real_bracket_2026-07-18.json`](../predictions/final_real_bracket_2026-07-18.json)
+
+### Model fair odds — 90 minutes vs full match
+
+Two different markets:
+
+| Market | Meaning |
+|--------|---------|
+| **90 min (1X2)** | Who wins regulation; **draw** pays if level after 90 |
+| **To win** | Who lifts the trophy (includes ET + pens; no draw) |
+
+#### Spain vs Argentina — Final
+
+| | Spain | Draw | Argentina |
+|---|------:|-----:|----------:|
+| **90 min probability** | 39.1% | 29.5% | 31.4% |
+| **Fair odds (90 min)** | **2.56** | **3.39** | **3.19** |
+| **To win probability** | **52.8%** | — | 47.1% |
+| **Fair odds (to win)** | **1.89** | — | **2.12** |
+
+**Pick to win the World Cup: Spain** (slight favourite once ET/pens are included). At 90 minutes Spain and Argentina are nearly even; the draw is a real live market (~3.39 fair).
+
+xG: Spain **1.08** – Argentina **1.12**
+
+#### France vs England — 3rd place (18 Jul)
+
+| | France | Draw | England |
+|---|-------:|-----:|--------:|
+| **90 min probability** | 48.6% | 30.3% | 21.1% |
+| **Fair odds (90 min)** | **2.06** | **3.30** | **4.75** |
+| **To win probability** | **62.8%** | — | 37.2% |
+| **Fair odds (to win)** | **1.59** | — | **2.69** |
+
+_3rd place may already be live/finished — research only._
+
+Technical: [`docs/FINAL_PREDICTIONS.md`](FINAL_PREDICTIONS.md)
+
+---
+
 ## Running scorecard
 
 | Round | Picks tracked | Correct | Hit rate |
@@ -305,8 +363,9 @@ Technical details: [`docs/SF_PREDICTIONS.md`](SF_PREDICTIONS.md)
 | R32 (first 10) | 10 | ~7–8 | ~75% |
 | R32 (final 6) | 6 | 5 | 83% |
 | R16 (all 8) | 8 | 6 | 75% |
-| **QF (all 4)** | **4** | **4** | **100%** |
-| **Overall** | **28** | **~22** | **~79%** |
+| QF (all 4) | 4 | 4 | 100% |
+| **SF (all 2)** | **2** | **2** | **100%** |
+| **Overall** | **30** | **~24** | **~80%** |
 
 The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil, Egypt over Australia, and Switzerland over Colombia were all in the “possible but not likely” bucket — which is exactly where real World Cups live.
 
@@ -315,7 +374,7 @@ The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil,
 ## How to follow along
 
 1. **This file** — the narrative (`docs/PREDICTION_STORY.md`)
-2. **Technical picks** — [`docs/SF_PREDICTIONS.md`](SF_PREDICTIONS.md) · [`docs/QF_PREDICTIONS.md`](QF_PREDICTIONS.md)
+2. **Technical picks** — [`docs/FINAL_PREDICTIONS.md`](FINAL_PREDICTIONS.md) · [`docs/SF_PREDICTIONS.md`](SF_PREDICTIONS.md)
 3. **Raw probabilities** — [`predictions/`](../predictions/) (JSON, timestamped)
 4. **Full methodology** — [`docs/METHODOLOGY.md`](METHODOLOGY.md) and the [research paper](Who_Scores_WC2026_Research_Paper.docx)
 
@@ -328,9 +387,10 @@ The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil,
 - [x] **Brazil–Norway post-mortem** — Chapter 9
 - [x] **Quarter-final results** — 4/4 correct
 - [x] **Semi-finals locked** — France–Spain today (14 Jul)
-- [ ] **Semi-final results**
-- [ ] **Final** — 19 July 2026, MetLife Stadium
+- [x] **Semi-final results** — Spain + Argentina to final
+- [x] **Final locked** — Spain vs Argentina (19 Jul)
+- [ ] **Final result** — MetLife Stadium
 
 ---
 
-*Last updated: 14 July 2026. Model version: `v6.1-sf-knockout-breakdown`.*
+*Last updated: 18 July 2026. Model version: `v7-final-odds`.*

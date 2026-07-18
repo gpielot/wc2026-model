@@ -7,6 +7,6 @@ Every file here is a **timestamped snapshot** published before kickoff. Do not e
 | `r32_2026-06-30.json` | Round of 32 (synthetic bracket) | 30 Jun 2026 |
 | `r16_real_bracket_2026-07-02.json` | Round of 16 (real FIFA bracket) | 2 Jul 2026 |
 | `qf_real_bracket_2026-07-07.json` | Quarter-finals (stale — wrong QF4 pairing) | 7 Jul 2026 |
-| `sf_real_bracket_2026-07-14.json` | Semi-finals after full QF | 14 Jul 2026 |
+| `final_real_bracket_2026-07-18.json` | Final + 3rd place (with fair odds) | 18 Jul 2026 |
 
 Narrative write-up: [`docs/PREDICTION_STORY.md`](../docs/PREDICTION_STORY.md)
