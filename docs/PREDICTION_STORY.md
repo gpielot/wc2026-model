@@ -356,6 +356,22 @@ Technical: [`docs/FINAL_PREDICTIONS.md`](FINAL_PREDICTIONS.md)
 
 ---
 
+## Chapter 14 — Betting experiment (research stakes)
+
+During the knockouts I ran a small Superbet bankroll for science — mostly flat stakes, sometimes gut-adjusted. Full audit (Kelly, dual Mecz/Awans pattern, what to do better):
+
+**[`docs/BETTING_EXPERIMENT.md`](BETTING_EXPERIMENT.md)** · ledger [`docs/betting_ledger.json`](betting_ledger.json)
+
+| Metric | Result |
+|--------|--------|
+| 31 bets | 18–13 |
+| Staked / returned | 140.00 / 134.99 PLN |
+| Net | **−5.01 PLN (−3.6% ROI)** |
+
+Main lesson: after Poland’s 12% stake tax, **Kelly is almost never positive on short favourites** — equal stakes on 90-min and to-advance also double exposure. Next time: half-Kelly only when edge clears tax; size Mecz and Awans separately.
+
+---
+
 ## Running scorecard
 
 | Round | Picks tracked | Correct | Hit rate |
@@ -374,7 +390,7 @@ The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil,
 ## How to follow along
 
 1. **This file** — the narrative (`docs/PREDICTION_STORY.md`)
-2. **Technical picks** — [`docs/FINAL_PREDICTIONS.md`](FINAL_PREDICTIONS.md) · [`docs/SF_PREDICTIONS.md`](SF_PREDICTIONS.md)
+2. **Technical picks** — [`docs/FINAL_PREDICTIONS.md`](FINAL_PREDICTIONS.md) · [`docs/BETTING_EXPERIMENT.md`](BETTING_EXPERIMENT.md)
 3. **Raw probabilities** — [`predictions/`](../predictions/) (JSON, timestamped)
 4. **Full methodology** — [`docs/METHODOLOGY.md`](METHODOLOGY.md) and the [research paper](Who_Scores_WC2026_Research_Paper.docx)
 
@@ -389,8 +405,9 @@ The model is useful, not clairvoyant. Paraguay over Germany, Norway over Brazil,
 - [x] **Semi-finals locked** — France–Spain today (14 Jul)
 - [x] **Semi-final results** — Spain + Argentina to final
 - [x] **Final locked** — Spain vs Argentina (19 Jul)
-- [ ] **Final result** — MetLife Stadium
+- [x] **Betting experiment write-up** — Chapter 14
+- [ ] **Final result chapter** — update when logging Spain’s win path
 
 ---
 
-*Last updated: 18 July 2026. Model version: `v7-final-odds`.*
+*Last updated: 23 July 2026. Includes betting experiment audit.*

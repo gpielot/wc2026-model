@@ -42,7 +42,9 @@ Club + international event data (StatsBomb)
 
 ## Predictions
 
-**[📖 Prediction Story](docs/PREDICTION_STORY.md)** — running diary: Brazil ✅, Paraguay upset ❌, Norway shock ❌, and locked QF picks.
+**[📖 Prediction Story](docs/PREDICTION_STORY.md)** — knockout diary through the final lock.
+
+**[💸 Betting experiment](docs/BETTING_EXPERIMENT.md)** — research Superbet slips vs model + Kelly (what to do better).
 
 Locked prediction files:
 
@@ -58,7 +60,8 @@ make update-final   # ingest results → retrain → publish next round
 
 Then update `docs/PREDICTION_STORY.md` with what happened and push.
 
-- See `docs/betting_edge_report.md` for model vs market comparison
+- See `docs/BETTING_EXPERIMENT.md` for the live betting audit
+- See `docs/betting_edge_report.md` for earlier model vs market notes
 
 ## Project structure
 
